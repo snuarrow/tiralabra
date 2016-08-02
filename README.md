@@ -13,3 +13,6 @@ sample graphical user interface
 -------------------------------
 
 final version will be paint like tool
+
+![alt tag](https://raw.githubusercontent.com/snuarrow/tiralabra/sample.png)
+
