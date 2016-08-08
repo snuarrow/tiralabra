@@ -16,4 +16,9 @@ lopullinen versio tulee olemaan paintin kaltainen työkalu, jossa voi piirtää 
 
 ![alt tag](sample.png)
 
+viikkoraportti 2
+----------------
 
+tämän viikon deadline pääsi yllättämään, olin varautunut, että se on tiistaina kuten ensimmäiselläkin viikolla. my bad. ohjelmaa on kuitenkin tehty ja luokat kommentoitu, testit eivät valitettavasti ehtineet vielä mukaan. Ohjelmarunko on hyvällä mallilla ja aloitinkin jo tekemään muutamia javan valmiita tietorakenteita korvaavia jutskia, esim prioriteettijonon jota ainakin a* tarvitsee. aikavaativuudet yritän minimoida kurssin aikana, tällä hetkellä hexpriorityqueue käyttää bubblesorttia joka on vain proof of conseptina siellä.
+
+Jatkan nyt projektin kehittämistä, luomalla ihan aluksi testit, toivottavasti ne ehtivät paikalle ennen kuin ohjaaja tämän tarkistaa.
