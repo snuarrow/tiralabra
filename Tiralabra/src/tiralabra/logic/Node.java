@@ -23,4 +23,16 @@ public class Node {
         this.y = (byte)y;
         this.color = (byte)color;
     }
+    public Node(int x, int y)
+    {
+        this.x = (byte)x;
+        this.y = (byte)y;
+        this.previous = null;
+        this.color = 0;
+    }
+    
+    public String toString()
+    {
+        return "x:"+x+" y:"+y+" color:"+color;
+    }
 }

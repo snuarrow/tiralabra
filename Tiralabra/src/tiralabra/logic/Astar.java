@@ -68,6 +68,8 @@ public class Astar {
             Node current = getBest();
             ArrayList<Node> neighbours = getNeighbours(current);
         
+            
+            
             if (inProgress)
             {
                 for (Node neighbour : neighbours) {
