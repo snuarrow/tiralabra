@@ -12,7 +12,8 @@ import tiralabra.gui.MainFrame;
 import tiralabra.logic.Board;
 
 /**
- *
+ * For starting and closing GUI.
+ * 
  * @author hexvaara
  */
 public class ProgramStarter {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
 import java.util.ArrayList;
@@ -10,7 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *
+ * A star algorithm.
+ * modifies board, has a bug.
+ * 
  * @author hexvaara
  */
 public class Astar {

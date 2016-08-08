@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
 import java.util.Random;
 
 /**
- *
+ * Byte map for handling current status
+ * 
  * @author hexvaara
  */
 public class Board {
@@ -29,6 +25,9 @@ public class Board {
         flush();
     }
     
+    /**
+     * writes 0 for each unit
+     */
     private void flush()
     {
         for (int i = 0; i < x; i++) {
@@ -38,6 +37,10 @@ public class Board {
         }
     }
     
+    /**
+     * create randomly distributed barriers
+     * @param density in percents
+     */
     public void randomizeObjects(int density)
     {
         Random r = new Random();
@@ -48,6 +51,7 @@ public class Board {
         }
         
     }
+    
     public void setStart(int x, int y)
     {
         board[x][y] = 4;
@@ -58,6 +62,7 @@ public class Board {
         board[x][y] = 3;
     }
     
+    @Override
     public String toString()
     {
         String returnvalue = "";

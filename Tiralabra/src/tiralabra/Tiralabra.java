@@ -12,7 +12,8 @@ import tiralabra.logic.HexPriorityQueue;
 import tiralabra.logic.Node;
 
 /**
- *
+ * Main class
+ * 
  * @author hexvaara
  */
 public class Tiralabra {

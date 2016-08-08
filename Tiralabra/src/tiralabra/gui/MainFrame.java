@@ -18,7 +18,8 @@ import tiralabra.logic.Bfs;
 import tiralabra.logic.Board;
 
 /**
- *
+ * Graphical user interface
+ * 
  * @author hexvaara
  */
 
@@ -28,22 +29,7 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
     private Board board;
     private Bfs bfs;
     private Astar astar;
-    /*
-    private Engine engine;
-    private final Global global;
-    private final Picture smiley;
-    private final Picture background;
-    private int image_display_time;
-    private Card clicked = null;
-    private int image_zoom_time;
-    private final StartMenu startmenu;
-    private final SettingsMenu settingsmenu;
-    private final EndMenu endmenu;
     
-    private int card_clicks;
-    private int gamestate; // 0 = startmenu, 1 = in game, 2 = in settings menu
-    private final GameStarter gamestarter;
-    */
     
     public MainFrame(ProgramStarter gamestarter, Board b)
     {
@@ -58,23 +44,7 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         astar.setStart(0, 0);
         
         
-        /*
-        this.gamestarter = gamestarter;
         
-        card_clicks = 0;
-        gamestate = 0;
-        
-        startmenu = new StartMenu(global);
-        settingsmenu = new SettingsMenu(global);
-        endmenu = new EndMenu(global);
-        
-        image_zoom_time = 0;
-        image_display_time = -1;
-        smiley = new Picture(0, "acid3tb.png");
-        background = new Picture(0, "background.png");
-        this.global = global;
-        engine = new Engine(global);
-        */
         
         
         addMouseListener(this);
@@ -111,15 +81,6 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         }
         
         
-        
-        //g.drawImage(new Picture(0, "pluto.gif").image(), 0, 0, global.getHorizontalsize(), global.getVerticalsize(), this);
-        
-        //startmenu.drawHeadline(g);
-        
-        //for (Button button : startmenu.buttons())
-        //{
-        //    button.draw(g);
-        //}
     }
     
     private void drawObstacle(Graphics2D g, int x, int y)

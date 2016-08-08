@@ -1,12 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
 /**
- *
+ * Node for 2 dimensional map.
+ * colors as numeral values:
+ * 0 white
+ * 1 barrier
+ * 2 visited
+ * 3 goal
+ * 4 start
+ * 
  * @author hexvaara
  */
 public class Node {
@@ -31,6 +33,7 @@ public class Node {
         this.color = 0;
     }
     
+    @Override
     public String toString()
     {
         return "x:"+x+" y:"+y+" color:"+color;
