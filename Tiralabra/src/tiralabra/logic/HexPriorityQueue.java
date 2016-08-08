@@ -9,7 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- *
+ * Priority Queue for whole project.
+ * when done, will handle all necessary data types.
+ * 
  * @author hexvaara
  */
 public class HexPriorityQueue {
