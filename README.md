@@ -26,6 +26,6 @@ Jatkan nyt projektin kehittämistä, luomalla ihan aluksi testit, toivottavasti 
 viikkoraportti 3
 ----------------
 
-A* toimii nyt kunnolla ja ohjelman runko sekä muoto ovat alkaneet saamaan lopullisia piirteitä, testejä on vitaaleille luokille. Prioriteettijono toimii nyt testatusti, joskin sitä voisi hieman viritellä. Joistakin luokista olen luopunut. 
+A* toimii nyt kunnolla ja ohjelman runko sekä muoto ovat alkaneet saamaan lopullisia piirteitä, testejä on vitaaleille luokille. Prioriteettijono toimii nyt testatusti, joskin sitä voisi hieman viritellä. Joistakin luokista olen luopunut. Omia tietorakenteita tulee ensi viikon aikana ainakin luoda: lista lisäys ja poisto operaatioilla sekä 0(1) ajassa toimiva hajautuskartta.
 
 ![alt tag](astar.png)
