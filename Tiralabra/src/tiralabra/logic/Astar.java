@@ -20,10 +20,10 @@ public class Astar {
         this.board = board;
         visited = new ArrayList<>();
     }
-    
+    /*
     public void setStart(int x, int y)
     {
-        visited.add(new Node(x,y,2, null));
+        visited.add(new Node(x,y,2, null, 0));
     }
     
     // 0 not visited
@@ -100,7 +100,7 @@ public class Astar {
     }
     
     
-    
+    /*
     private ArrayList<Node> getNeighbours(Node current)
     {
         ArrayList<Node> returnlist = new ArrayList<>();
@@ -116,4 +116,5 @@ public class Astar {
         
         return returnlist;
     }
+    */
 }

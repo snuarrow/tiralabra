@@ -23,7 +23,7 @@ public class Bfs {
     
     public void setStart(int x, int y)
     {
-        visited.add(new Node(x,y,2, null));
+        visited.add(new Node(x,y,2, null, 0));
     }
     
     // 0 not visited
@@ -81,14 +81,14 @@ public class Bfs {
     {
         ArrayList<Node> returnlist = new ArrayList<>();
         
-        if (current.x > 0) returnlist.add(new Node(current.x-1, current.y, board.getBoard()[current.x-1][current.y], current)); //ylös
-        if (current.y > 0) returnlist.add(new Node(current.x, current.y-1, board.getBoard()[current.x][current.y-1], current)); // vasen
-        if (current.y < 19) returnlist.add(new Node(current.x, current.y+1, board.getBoard()[current.x][current.y+1], current)); //oikea
-        if (current.x < 19) returnlist.add(new Node(current.x+1, current.y, board.getBoard()[current.x+1][current.y], current)); // alas
-        if (current.x > 0 && current.y > 0) returnlist.add(new Node(current.x-1, current.y-1, board.getBoard()[current.x-1][current.y-1], current));  // vasen ylä
-        if (current.x > 0 && current.y < 19) returnlist.add(new Node(current.x-1, current.y+1, board.getBoard()[current.x-1][current.y+1], current)); // oikea ylä
-        if (current.x < 19 && current.y > 0) returnlist.add(new Node(current.x+1, current.y-1, board.getBoard()[current.x+1][current.y-1], current)); // vasen ala
-        if (current.x < 19 && current.y < 19) returnlist.add(new Node(current.x+1, current.y+1, board.getBoard()[current.x+1][current.y+1], current)); // oikea ala
+        if (current.x > 0) returnlist.add(new Node(current.x-1, current.y, board.getBoard()[current.x-1][current.y], current, 0)); //ylös
+        if (current.y > 0) returnlist.add(new Node(current.x, current.y-1, board.getBoard()[current.x][current.y-1], current, 0)); // vasen
+        if (current.y < 19) returnlist.add(new Node(current.x, current.y+1, board.getBoard()[current.x][current.y+1], current, 0)); //oikea
+        if (current.x < 19) returnlist.add(new Node(current.x+1, current.y, board.getBoard()[current.x+1][current.y], current, 0)); // alas
+        if (current.x > 0 && current.y > 0) returnlist.add(new Node(current.x-1, current.y-1, board.getBoard()[current.x-1][current.y-1], current, 0));  // vasen ylä
+        if (current.x > 0 && current.y < 19) returnlist.add(new Node(current.x-1, current.y+1, board.getBoard()[current.x-1][current.y+1], current, 0)); // oikea ylä
+        if (current.x < 19 && current.y > 0) returnlist.add(new Node(current.x+1, current.y-1, board.getBoard()[current.x+1][current.y-1], current, 0)); // vasen ala
+        if (current.x < 19 && current.y < 19) returnlist.add(new Node(current.x+1, current.y+1, board.getBoard()[current.x+1][current.y+1], current, 0)); // oikea ala
         
         return returnlist;
     }

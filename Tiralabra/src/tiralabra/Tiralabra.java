@@ -6,9 +6,7 @@
 package tiralabra;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import tiralabra.logic.Comparators;
-import tiralabra.logic.HexPriorityQueue;
+import tiralabra.logic.Astar3;
 import tiralabra.logic.Node;
 
 /**
@@ -27,6 +25,35 @@ public class Tiralabra {
         ProgramStarter ps = new ProgramStarter();
         ps.startFrame();
     
+        
+        byte[][] bytemap = 
+        {
+            {4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3},
+        };
+        
+        
+        //Astar3 astar3 = new Astar3(bytemap);
+        //System.out.println(astar3.iterate()[0][0]);
+        
         //Class[] parameterTypes = new Class[3];
         //parameterTypes[0] = Node.class;
         //parameterTypes[1] = Node.class;
@@ -46,6 +73,19 @@ public class Tiralabra {
         //hh.add(new Node(1,1));
         
         //System.out.println(hh.pop());
+    }
+    
+    public static void printByteMap(byte[][] bytemap)
+    {
+        String asd = "";
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
+                asd += bytemap[i][j];
+            }
+            asd += "\n";
+        }
+        System.out.println(asd);
+        
     }
     
     

@@ -86,7 +86,8 @@ public class HexPriorityQueue {
         return true;
     }
     
-    // tää bubble ei toimi viel, heitä roskii ja tee vaa nodejono
+    // tää bubble ei toimi viel, heitä roskii ja tee vaa nodejonona
+    /*
     public Object pop() throws IllegalAccessException, InvocationTargetException
     {
         if (memory.length == 1) return memory[0];
@@ -105,6 +106,9 @@ public class HexPriorityQueue {
         
         return best;
     }
+    */
+    
+    
     
     
     

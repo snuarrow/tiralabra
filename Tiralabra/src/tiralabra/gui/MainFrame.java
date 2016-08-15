@@ -13,9 +13,11 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import tiralabra.ProgramStarter;
-import tiralabra.logic.Astar;
+import tiralabra.logic.Astar2;
+import tiralabra.logic.Astar3;
 import tiralabra.logic.Bfs;
 import tiralabra.logic.Board;
+import tiralabra.logic.Node;
 
 /**
  * Graphical user interface
@@ -26,22 +28,27 @@ import tiralabra.logic.Board;
 public class MainFrame extends JPanel implements ActionListener, MouseListener, MouseMotionListener
 {
     private final Timer t;
-    private Board board;
+    //private Board board;
     private Bfs bfs;
-    private Astar astar;
+    private Astar3 astar;
+    private byte[][] bytemap;
     
-    
-    public MainFrame(ProgramStarter gamestarter, Board b)
+    public MainFrame(ProgramStarter gamestarter, byte[][] bytemap)
     {
-        this.board = b;
+        
+        //this.board = b;
+
+        this.bytemap = bytemap;
         
         
-        this.bfs = new Bfs(this.board);
-        bfs.setStart(0, 0);
+        //this.bfs = new Bfs(this.board);
+        //bfs.setStart(0, 0);
         
         
-        this.astar = new Astar(this.board);
-        astar.setStart(0, 0);
+        
+        this.astar = new Astar3(bytemap);
+        
+        
         
         
         
@@ -49,7 +56,7 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         
         addMouseListener(this);
         addMouseMotionListener(this);
-        t = new Timer(50, this);
+        t = new Timer(20, this);
         t.start();
     }
 
@@ -67,10 +74,10 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
             for (int j = 0; j < 20; j++) {
                 
                 
-                if (board.getBoard()[j][i] == 1) drawObstacle(g, i, j);
-                if (board.getBoard()[j][i] == 2) drawRed(g, i, j);
-                if (board.getBoard()[j][i] == 3) drawBlue(g, i, j);
-                if (board.getBoard()[j][i] == 4) drawGreen(g, i, j);
+                if (bytemap[j][i] == 1) drawObstacle(g, i, j);
+                if (bytemap[j][i] == 2) drawRed(g, i, j);
+                if (bytemap[j][i] == 3) drawBlue(g, i, j);
+                if (bytemap[j][i] == 4) drawGreen(g, i, j);
                 
                 
                 
@@ -130,12 +137,13 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
     private void iteration()
     {
         repaint();
-        astar.iterate();
+        //bfs.iterate();
+        bytemap = astar.iterate();
     }
 
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
-        
+        //iteration();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

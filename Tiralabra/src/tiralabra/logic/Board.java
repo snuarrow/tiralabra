@@ -51,6 +51,10 @@ public class Board {
         }
         
     }
+    public void visit(int x, int y)
+    {
+        board[x][y] = 2;
+    }
     
     public void setStart(int x, int y)
     {
