@@ -5,8 +5,7 @@
  */
 package tiralabra.logic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import tiralabra.logic.structures.HexMap;
 import tiralabra.logic.structures.NodeQueue;
 
 /**
@@ -22,9 +21,12 @@ public class Astar3 {
     //ArrayList<Node> openSet;
     NodeQueue closedSet;
     NodeQueue openSet;
-    HashMap<Node, Node> cameFrom;
-    HashMap<Node, Double> gScore;
-    HashMap<Node, Double> fScore;
+    //HashMap<Node, Node> cameFrom;
+    HexMap cameFrom;
+    //HashMap<Node, Double> gScore;
+    HexMap gScore;
+    //HashMap<Node, Double> fScore;
+    HexMap fScore;
     
     public Astar3(byte[][] bytemap)
     {
@@ -34,10 +36,14 @@ public class Astar3 {
         this.closedSet = new NodeQueue();
         this.openSet = new NodeQueue();
         this.openSet.add(nodemap.getStart());
-        this.cameFrom = new HashMap<>();
-        this.gScore = new HashMap<>();
+        
+        //this.cameFrom = new HashMap<>();
+        this.cameFrom = new HexMap();
+        //this.gScore = new HashMap<>();
+        this.gScore = new HexMap();
         this.gScore.put(nodemap.getStart(), 0.0);
-        this.fScore = new HashMap<>();
+        //this.fScore = new HashMap<>();
+        this.fScore = new HexMap();
         this.fScore.put(nodemap.getStart(), heuristic_cost_estimate(nodemap.getStart(),nodemap.getGoal()));
     }
     
@@ -55,10 +61,10 @@ public class Astar3 {
             for (Node neighbor : nodemap.getFreeNeighbours(current)) {
                 if (closedSet.contains(neighbor)) continue;
                 
-                double tentative_gscore = gScore.get(current) + current.distance(neighbor);
+                double tentative_gscore = (Double)gScore.get(current) + current.distance(neighbor);
                 
                 if (!openSet.contains(neighbor)) openSet.add(neighbor);
-                else if (tentative_gscore >= gScore.get(neighbor)) continue;
+                else if (tentative_gscore >= (Double)gScore.get(neighbor)) continue;
                 
                 cameFrom.put(neighbor, current);
                 gScore.put(neighbor, tentative_gscore);
@@ -79,7 +85,7 @@ public class Astar3 {
         while (cameFrom.containsKey(current))
         {
             nodemap.changeColor(current, 4);
-            current = cameFrom.get(current);
+            current = (Node) cameFrom.get(current);
         }
         finished = true;
     }
@@ -91,7 +97,7 @@ public class Astar3 {
         for (Node nodeInOpenSet : openSet.getContent()) {
             if (fScore.containsKey(nodeInOpenSet))
             {
-                double currentFScore = fScore.get(nodeInOpenSet);
+                double currentFScore = (Double) fScore.get(nodeInOpenSet);
                 if (currentFScore < bestFScore)
                 {
                     bestFScore = currentFScore;
