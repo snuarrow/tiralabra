@@ -29,3 +29,8 @@ viikkoraportti 3
 A* toimii nyt kunnolla ja ohjelman runko sekä muoto ovat alkaneet saamaan lopullisia piirteitä, testejä on vitaaleille luokille. Prioriteettijono toimii nyt testatusti, joskin sitä voisi hieman viritellä. Joistakin luokista olen luopunut. Omia tietorakenteita tulee ensi viikon aikana ainakin luoda: lista lisäys ja poisto operaatioilla sekä 0(1) ajassa toimiva hajautuskartta.
 
 ![alt tag](astar.png)
+
+viikkoraportti 4
+----------------
+
+vertaisarviointi tehty, omaan koodiin tullut lisää testejä sekä NodeQueue luokka alkaa olla valmis korvaamaan javan arraylistin. tunteja tällä viikolla on tullut liian vähän, yritän tällä viikolla antaa muilta tekemisiltä tälle projektille enemmän aikaa.
