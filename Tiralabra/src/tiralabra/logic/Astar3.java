@@ -7,6 +7,7 @@ package tiralabra.logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import tiralabra.logic.structures.NodeQueue;
 
 /**
  * A* shortest path finding algorithm.
@@ -17,8 +18,10 @@ import java.util.HashMap;
 public class Astar3 {
     
     NodeMap nodemap;
-    ArrayList<Node> closedSet;
-    ArrayList<Node> openSet;
+    //ArrayList<Node> closedSet;
+    //ArrayList<Node> openSet;
+    NodeQueue closedSet;
+    NodeQueue openSet;
     HashMap<Node, Node> cameFrom;
     HashMap<Node, Double> gScore;
     HashMap<Node, Double> fScore;
@@ -26,8 +29,10 @@ public class Astar3 {
     public Astar3(byte[][] bytemap)
     {
         this.nodemap = new NodeMap(20,20, bytemap);
-        this.closedSet = new ArrayList<>();
-        this.openSet = new ArrayList<>();
+        //this.closedSet = new ArrayList<>();
+        //this.openSet = new ArrayList<>();
+        this.closedSet = new NodeQueue();
+        this.openSet = new NodeQueue();
         this.openSet.add(nodemap.getStart());
         this.cameFrom = new HashMap<>();
         this.gScore = new HashMap<>();
@@ -83,7 +88,7 @@ public class Astar3 {
     {
         Node best = null;
         double bestFScore = Integer.MAX_VALUE;
-        for (Node nodeInOpenSet : openSet) {
+        for (Node nodeInOpenSet : openSet.getContent()) {
             if (fScore.containsKey(nodeInOpenSet))
             {
                 double currentFScore = fScore.get(nodeInOpenSet);

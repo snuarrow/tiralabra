@@ -33,4 +33,4 @@ A* toimii nyt kunnolla ja ohjelman runko sekä muoto ovat alkaneet saamaan lopul
 viikkoraportti 4
 ----------------
 
-vertaisarviointi tehty, omaan koodiin tullut lisää testejä sekä NodeQueue luokka alkaa olla valmis korvaamaan javan arraylistin. tunteja tällä viikolla on tullut liian vähän, yritän tällä viikolla antaa muilta tekemisiltä tälle projektille enemmän aikaa.
+vertaisarviointi tehty, omaan koodiin tullut lisää testejä sekä NodeQueue luokka korvaa nyt javan arraylistin. tunteja tällä viikolla on tullut liian vähän, yritän tällä viikolla antaa muilta tekemisiltä tälle projektille enemmän aikaa.

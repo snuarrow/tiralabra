@@ -92,7 +92,8 @@ public class NodeQueue {
     {
         if (this.memory == null) 
         {
-            this.memory = new Node[1]; this.memory[0] = input;
+            this.memory = new Node[1];
+            this.memory[0] = input;
         }
         else 
         {
