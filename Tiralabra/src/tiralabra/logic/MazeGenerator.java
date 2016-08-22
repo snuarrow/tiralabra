@@ -5,7 +5,6 @@
  */
 package tiralabra.logic;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -23,6 +22,7 @@ public class MazeGenerator {
     
     public MazeGenerator()
     {
+        
         walls = new HashSet<>();
         amaze = new byte[20][20];
         for (byte[] amaze1 : amaze) {

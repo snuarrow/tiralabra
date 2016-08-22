@@ -41,6 +41,11 @@ public class Node {
         this.color = 0;
     }
     
+    public boolean equals(Node compare)
+    {
+        return this.x == compare.x && this.y == compare.y;
+    }
+    
     
     
     

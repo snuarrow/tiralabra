@@ -159,4 +159,65 @@ public class NodeQueueTest {
         assertEquals(3, q.length());
     }
     
+    @Test
+    public void testContains()
+    {
+        q.add(a);
+        q.add(b);
+        q.add(c);
+        assertTrue(q.contains(a));
+        assertTrue(q.contains(b));
+        assertTrue(q.contains(c));
+        assertFalse(q.contains(d));
+        assertFalse(q.contains(e));
+    }
+    
+    @Test
+    public void testRemove()
+    {
+        q.add(a);
+        q.add(b);
+        q.add(c);
+        
+        q.remove(a);
+        
+        assertFalse(q.contains(a));
+        q.remove(b);
+        
+        assertFalse(q.contains(b));
+        q.remove(c);
+        
+        assertFalse(q.contains(c));
+    }
+    
+    @Test
+    public void testIsEmpty()
+    {
+        assertTrue(q.isEmpty());
+        
+        q.add(a);
+        q.add(b);
+        
+        assertFalse(q.isEmpty());
+        q.remove(a);
+        assertFalse(q.isEmpty());
+        q.remove(b);
+        assertTrue(q.isEmpty());
+    }
+    
+    @Test
+    public void testLength()
+    {
+        assertEquals(0, q.length());
+        q.add(a);
+        assertEquals(1, q.length());
+        q.add(b);
+        assertEquals(2, q.length());
+        q.remove(a);
+        assertEquals(1, q.length());
+        q.remove(b);
+        assertEquals(0, q.length());
+        
+    }
+    
 }

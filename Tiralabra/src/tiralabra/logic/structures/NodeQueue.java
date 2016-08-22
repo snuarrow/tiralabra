@@ -20,6 +20,41 @@ public class NodeQueue {
         
     }
     
+    public Node[] getContent()
+    {
+        return memory;
+    }
+    
+    
+    //tested
+    public boolean remove(Node input)
+    {
+        for (int i = 0; i < memory.length; i++) {
+            if (memory[i].equals(input)) 
+            {
+                removeIndex(i);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //tested
+    public boolean contains(Node input)
+    {
+        if (memory.length == 0) return false;
+        for (Node slot : memory) {
+            if (slot.equals(input)) return true;
+        }
+        return false;
+    }
+    
+    //tested
+    public boolean isEmpty()
+    {
+        return this.length() == 0;
+    }
+    
     private void enlarge()
     {
         int size = memory.length;
@@ -45,6 +80,7 @@ public class NodeQueue {
             memory[i] = temp[i];
         }
     }
+    
     
     public int length()
     {
@@ -82,7 +118,7 @@ public class NodeQueue {
             }
         }
         removeIndex(indexOfBest);
-        ensmall();
+        //ensmall();
         return best;
     }
     public Node popFirst()
@@ -90,7 +126,7 @@ public class NodeQueue {
         if (memory == null || memory.length == 0) return null;
         Node temp = memory[0];
         removeIndex(0);
-        ensmall();
+        //ensmall();
         return temp;
     }
     
@@ -99,7 +135,10 @@ public class NodeQueue {
         for (int i = index; i < memory.length-1; i++) {
             memory[i] = memory[i+1];
         }
+        ensmall();
     }
+    
+    
     
     @Override
     public String toString()

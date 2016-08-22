@@ -56,7 +56,7 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         
         addMouseListener(this);
         addMouseMotionListener(this);
-        t = new Timer(20, this);
+        t = new Timer(50, this);
         t.start();
     }
 
