@@ -34,3 +34,9 @@ viikkoraportti 4
 ----------------
 
 vertaisarviointi tehty, omaan koodiin tullut lisää testejä sekä NodeQueue luokka korvaa nyt javan arraylistin sekä HexMap HashMapin. tunteja tällä viikolla on tullut liian vähän, yritän tällä viikolla antaa muilta tekemisiltä tälle projektille enemmän aikaa.
+
+viikkoraportti 5
+----------------
+
+mazegenerator toimii nyt alustavasti ja astar ratkoo sen nätisti.
+![alt tag](mazev1.png)

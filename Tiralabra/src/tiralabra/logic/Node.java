@@ -15,16 +15,16 @@ public class Node {
     
     public int totalWeight;
     public Node previous;
-    public byte x;
-    public byte y;
+    public int x;
+    public int y;
     public byte color;
     
     public Node(int x, int y, int color, Node previous, int weight)
     {
         this.totalWeight = weight;
         this.previous = previous;
-        this.x = (byte)x;
-        this.y = (byte)y;
+        this.x = x;
+        this.y = y;
         this.color = (byte)color;
     }
     
@@ -39,6 +39,13 @@ public class Node {
         this.y = (byte)y;
         this.previous = null;
         this.color = 0;
+    }
+    
+    public Node(int x, int y, int color)
+    {
+        this.x = x;
+        this.y = y;
+        this.color = (byte) color;
     }
     
     public boolean equals(Node compare)

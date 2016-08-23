@@ -13,11 +13,9 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import tiralabra.ProgramStarter;
-import tiralabra.logic.Astar2;
 import tiralabra.logic.Astar3;
 import tiralabra.logic.Bfs;
-import tiralabra.logic.Board;
-import tiralabra.logic.Node;
+import tiralabra.logic.MazeGenerator;
 
 /**
  * Graphical user interface
@@ -31,6 +29,8 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
     //private Board board;
     private Bfs bfs;
     private Astar3 astar;
+    private MazeGenerator mazegenerator;
+    
     private byte[][] bytemap;
     
     public MainFrame(ProgramStarter gamestarter, byte[][] bytemap)
@@ -40,7 +40,7 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
 
         this.bytemap = bytemap;
         
-        
+        this.mazegenerator = new MazeGenerator();
         //this.bfs = new Bfs(this.board);
         //bfs.setStart(0, 0);
         
@@ -56,10 +56,11 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         
         addMouseListener(this);
         addMouseMotionListener(this);
-        t = new Timer(50, this);
+        t = new Timer(delay, this);
         t.start();
     }
 
+    int delay = 10;
     
     /**
      * renderöi aloitusvalikon näkymän
@@ -134,11 +135,28 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         iteration();
     }
     
+    boolean initastar = false;
+    
     private void iteration()
     {
         repaint();
         //bfs.iterate();
-        bytemap = astar.iterate();
+        //bytemap = astar.iterate();
+        if (!mazegenerator.isFinished()) bytemap = mazegenerator.iterate();
+        else if (initastar == false) 
+        {
+            initastar = true;
+            bytemap[1][1] = 4;
+            bytemap[18][18] =3;
+            astar = new Astar3(bytemap);
+            bytemap = astar.iterate();
+            delay = 2000;
+            return;
+        } else if (initastar == true)
+        {
+            bytemap = astar.iterate();
+            delay = 100;
+        }
     }
 
     @Override

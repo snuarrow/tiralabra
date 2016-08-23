@@ -29,6 +29,16 @@ public class NodeMap {
         init(bytemap);
     }
     
+    public NodeMap(int xsize, int ysize)
+    {
+        nodemap = new Node[xsize][ysize];
+        this.xsize = xsize;
+        this.ysize = ysize;
+        initBlack();
+    }
+    
+    
+    
     public Node getGoal()
     {
         return nodemap[xgoal][ygoal];
@@ -54,20 +64,74 @@ public class NodeMap {
         }
     }
     
-    public void initBlack(byte[][] bytemap)
+    private void initBlack()
     {
-        for (int i = 0; i < 10; i++) {
-            
+        for (int i = 0; i < xsize; i++) {
+            for (int j = 0; j < ysize; j++) {
+                nodemap[i][j] = new Node(i, j, 1);
+            }
         }
     }
     
     public ArrayList<Node> getFreeNeighbours(Node n)
     {
         ArrayList<Node> returnlist = new ArrayList<>();
-        for (Node nn : getNeighbours(n)) {
+        for (Node nn : getCrossNeighbours(n)) {
             if (nn.color != 1) returnlist.add(nn);
         }
         return returnlist;
+    }
+    
+    public Node getNode(int x, int y)
+    {
+        return nodemap[x][y];
+    }
+    
+    public ArrayList<Node> getAllNodes()
+    {
+        ArrayList<Node> returnlist = new ArrayList<>();
+        
+        for (int i = 0; i < xsize; i++) {
+            for (int j = 0; j < ysize; j++) {
+                returnlist.add(nodemap[i][j]);
+            }
+        }
+        return returnlist;
+    }
+    
+    public ArrayList<Node> getCrossNeighbours(Node n)
+    {
+        ArrayList<Node> r = new ArrayList<Node>();
+        
+        //up
+        if (n.x > 0) r.add(nodemap[n.x-1][n.y]);
+       
+        //down
+        if (n.x < xsize-1) r.add(nodemap[n.x+1][n.y]);
+        
+        //left
+        if (n.y > 0) r.add(nodemap[n.x][n.y-1]);
+        
+        //right
+        if (n.y < ysize-1) r.add(nodemap[n.x][n.y+1]);
+        
+        return r;
+    }
+    
+    public int getColor(Node n)
+    {
+        return nodemap[n.x][n.y].color;
+    }
+    
+    public ArrayList<Node> getAllRemainingBlacks()
+    {
+        ArrayList<Node> r = new ArrayList<Node>();
+        for (Node[] r1 : nodemap) {
+            for (Node r11 : r1) {
+                if (r11.color == 1) r.add(r11);
+            }
+        }
+        return r;
     }
     
     public ArrayList<Node> getNeighbours(Node n)
