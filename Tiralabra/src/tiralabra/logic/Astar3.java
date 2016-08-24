@@ -5,6 +5,7 @@
  */
 package tiralabra.logic;
 
+import tiralabra.logic.structures.NodeMap;
 import tiralabra.logic.structures.HexMap;
 import tiralabra.logic.structures.NodeQueue;
 
@@ -30,7 +31,7 @@ public class Astar3 {
     
     public Astar3(byte[][] bytemap)
     {
-        this.nodemap = new NodeMap(20,20, bytemap);
+        this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
         //this.closedSet = new ArrayList<>();
         //this.openSet = new ArrayList<>();
         this.closedSet = new NodeQueue();
@@ -45,6 +46,11 @@ public class Astar3 {
         //this.fScore = new HashMap<>();
         this.fScore = new HexMap();
         this.fScore.put(nodemap.getStart(), heuristic_cost_estimate(nodemap.getStart(),nodemap.getGoal()));
+    }
+    
+    public boolean isFinished()
+    {
+        return finished;
     }
     
     public byte[][] iterate()

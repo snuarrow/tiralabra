@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiralabra.logic;
+package tiralabra.logic.structures;
 
 import java.util.ArrayList;
+import tiralabra.logic.Node;
 
 /**
  * n*m sized array for handling nodes in graph.
@@ -21,6 +22,7 @@ public class NodeMap {
     private final int ysize;
     private int xgoal, ygoal, xstart, ystart;
     
+    //tested
     public NodeMap(int xsize, int ysize, byte[][] bytemap)
     {
         nodemap = new Node[xsize][ysize];
@@ -29,6 +31,7 @@ public class NodeMap {
         init(bytemap);
     }
     
+    //tested
     public NodeMap(int xsize, int ysize)
     {
         nodemap = new Node[xsize][ysize];
@@ -37,22 +40,25 @@ public class NodeMap {
         initBlack();
     }
     
-    
-    
+    //tested
     public Node getGoal()
     {
         return nodemap[xgoal][ygoal];
     }
+    
+    //tested
     public Node getStart()
     {
         return nodemap[xstart][ystart];
     }
     
+    // tested
     public void changeColor(Node n, int color)
     {
         if (nodemap[n.x][n.y].color != 4 && nodemap[n.x][n.y].color != 3) nodemap[n.x][n.y].color = (byte) color;
     }
     
+    //tested
     private void init(byte[][] bytemap)
     {
         for (int i = 0; i < xsize; i++) {
@@ -64,6 +70,7 @@ public class NodeMap {
         }
     }
     
+    //tested
     private void initBlack()
     {
         for (int i = 0; i < xsize; i++) {
@@ -82,11 +89,13 @@ public class NodeMap {
         return returnlist;
     }
     
+    //tested
     public Node getNode(int x, int y)
     {
         return nodemap[x][y];
     }
     
+    //tested
     public ArrayList<Node> getAllNodes()
     {
         ArrayList<Node> returnlist = new ArrayList<>();
@@ -99,6 +108,7 @@ public class NodeMap {
         return returnlist;
     }
     
+    //tested
     public ArrayList<Node> getCrossNeighbours(Node n)
     {
         ArrayList<Node> r = new ArrayList<Node>();
@@ -118,6 +128,28 @@ public class NodeMap {
         return r;
     }
     
+    //tested
+    public ArrayList<Node> getCornerNeighbours(Node n)
+    {
+        ArrayList<Node> r = new ArrayList<>();
+        
+        //upleft
+        if (n.x > 0 && n.y > 0) r.add(nodemap[n.x-1][n.y-1]);
+        
+        
+        //upright
+        if (n.x > 0 && n.y < ysize-1) r.add(nodemap[n.x-1][n.y+1]);
+        
+        //downleft
+        if (n.x < xsize-1 && n.y > 0) r.add(nodemap[n.x+1][n.y-1]);
+        
+        //downright
+        if (n.x < xsize-1 && n.y < ysize-1) r.add(nodemap[n.x+1][n.y+1]);
+        
+        return r;
+    }
+    
+    //tested
     public int getColor(Node n)
     {
         return nodemap[n.x][n.y].color;
@@ -134,36 +166,13 @@ public class NodeMap {
         return r;
     }
     
+    //tested
     public ArrayList<Node> getNeighbours(Node n)
     {
         ArrayList<Node> r = new ArrayList<Node>();
         
-        //up
-        if (n.x > 0) r.add(nodemap[n.x-1][n.y]);
-       
-        
-        //down
-        if (n.x < xsize-1) r.add(nodemap[n.x+1][n.y]);
-        
-        //left
-        if (n.y > 0) r.add(nodemap[n.x][n.y-1]);
-        
-        //right
-        if (n.y < ysize-1) r.add(nodemap[n.x][n.y+1]);
-        
-        
-        //upleft
-        if (n.x > 0 && n.y > 0) r.add(nodemap[n.x-1][n.y-1]);
-        
-        
-        //upright
-        if (n.x > 0 && n.y < ysize-1) r.add(nodemap[n.x-1][n.y+1]);
-        
-        //downleft
-        if (n.x < xsize-1 && n.y > 0) r.add(nodemap[n.x+1][n.y-1]);
-        
-        //downright
-        if (n.x < xsize-1 && n.y < ysize-1) r.add(nodemap[n.x+1][n.y+1]);
+        r.addAll(getCrossNeighbours(n));
+        r.addAll(getCornerNeighbours(n));
         
         return r;
     }

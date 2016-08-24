@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import tiralabra.ProgramStarter;
 import tiralabra.logic.Astar3;
-import tiralabra.logic.Bfs;
+import tiralabra.logic.GameOfLife;
 import tiralabra.logic.MazeGenerator;
 
 /**
@@ -27,32 +27,28 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
 {
     private final Timer t;
     //private Board board;
-    private Bfs bfs;
     private Astar3 astar;
     private MazeGenerator mazegenerator;
+    private GameOfLife gol;
+    private int pixelsize;
+    private int slotsX;
+    private int slotsY;
+    
+    int delay = 1;
     
     private byte[][] bytemap;
     
-    public MainFrame(ProgramStarter gamestarter, byte[][] bytemap)
+    public MainFrame(ProgramStarter gamestarter, byte[][] bytemap, int pixelsize, int slotsX, int slotsY)
     {
-        
-        //this.board = b;
-
-        this.bytemap = bytemap;
-        
-        this.mazegenerator = new MazeGenerator();
-        //this.bfs = new Bfs(this.board);
-        //bfs.setStart(0, 0);
+        this.pixelsize = pixelsize;
+        this.slotsX = slotsX;
+        this.slotsY = slotsY;
         
         
-        
+        this.mazegenerator = new MazeGenerator(slotsX,slotsY);
+        this.bytemap = mazegenerator.getStartFrame();
+        //this.gol = new GameOfLife(slotsX,slotsY,bytemap);
         this.astar = new Astar3(bytemap);
-        
-        
-        
-        
-        
-        
         
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -60,73 +56,55 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         t.start();
     }
 
-    int delay = 10;
+    
     
     /**
      * renderöi aloitusvalikon näkymän
      * @param g 
      */
-    public void start_menu(Graphics2D g)
+    public void in_program(Graphics2D g)
     {
         byte x = 0;
         byte y = 0;
         
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                
-                
+        for (int i = 0; i < slotsX; i++) {
+            for (int j = 0; j < slotsY; j++) {
                 if (bytemap[j][i] == 1) drawObstacle(g, i, j);
                 if (bytemap[j][i] == 2) drawRed(g, i, j);
                 if (bytemap[j][i] == 3) drawBlue(g, i, j);
                 if (bytemap[j][i] == 4) drawGreen(g, i, j);
-                
-                
-                
-                //g.setPaint();
-                
             }
-           
         }
-        
-        
     }
     
     private void drawObstacle(Graphics2D g, int x, int y)
     {
         g.setColor(java.awt.Color.BLACK);
-        g.fillRect(x*50, y*50, 50, 50);
+        g.fillRect(x*pixelsize, y*pixelsize, pixelsize, pixelsize);
         
     }
     private void drawRed(Graphics2D g, int x, int y)
     {
         g.setColor(java.awt.Color.RED);
-        g.fillRect(x*50, y*50, 50, 50);
+        g.fillRect(x*pixelsize, y*pixelsize, pixelsize, pixelsize);
     }
     private void drawBlue(Graphics2D g, int x, int y)
     {
         g.setColor(java.awt.Color.BLUE);
-        g.fillRect(x*50, y*50, 50, 50);
+        g.fillRect(x*pixelsize, y*pixelsize, pixelsize, pixelsize);
     }
     private void drawGreen(Graphics2D g, int x, int y)
     {
         g.setColor(java.awt.Color.GREEN);
-        g.fillRect(x*50, y*50, 50, 50);
+        g.fillRect(x*pixelsize, y*pixelsize, pixelsize, pixelsize);
     }
-    // muuttujat show_picture funktiolle
-    private int show_picture_state = 0; // 0 = in zoom period, 1 = fully zoomed
-    private int upper_left_x;
-    private int upper_left_y;
-    private int width;
-    private int height;
-    
+
     @Override
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
-        start_menu(g2);
-                
+        in_program(g2);
     }
     
 
@@ -136,27 +114,38 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
     }
     
     boolean initastar = false;
+    boolean initgol = true;
     
     private void iteration()
     {
         repaint();
-        //bfs.iterate();
+        
         //bytemap = astar.iterate();
+        
+        //bytemap = gol.iterate();
+        
+        
         if (!mazegenerator.isFinished()) bytemap = mazegenerator.iterate();
         else if (initastar == false) 
         {
             initastar = true;
             bytemap[1][1] = 4;
-            bytemap[18][18] =3;
+            bytemap[slotsX-2][slotsY-2] =3;
             astar = new Astar3(bytemap);
             bytemap = astar.iterate();
             delay = 2000;
             return;
         } else if (initastar == true)
         {
-            bytemap = astar.iterate();
-            delay = 100;
+            if (!astar.isFinished())
+            {
+                bytemap = astar.iterate();
+                delay = 100;
+            } 
+            
         }
+        
+        
     }
 
     @Override

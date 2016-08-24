@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="x240" name="tiralabra.logic.NodeTest" skipped="0" tests="4" time="0.098" timestamp="2016-08-22T17:45:42">
+<testsuite errors="0" failures="0" hostname="Luonto" name="tiralabra.logic.NodeTest" skipped="0" tests="4" time="0.052" timestamp="2016-08-23T18:42:10">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -14,7 +14,7 @@
     <property name="libs.jsp-compilation.javadoc" value="" />
     <property name="user.dir" value="/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra" />
     <property name="libs.javaee-api-7.0.src" value="" />
-    <property name="java.vm.version" value="25.91-b14" />
+    <property name="java.vm.version" value="25.101-b13" />
     <property name="libs.DataBindingME.classpath" value="/home/hexvaara/netbeans-8.0.2/mobility/modules/ext/netbeans_databindingme.jar" />
     <property name="libs.j2me_common_ant.src" value="" />
     <property name="libs.MySQLDriver.classpath" value="/home/hexvaara/netbeans-8.0.2/ide/modules/ext/mysql-connector-java-5.1.23-bin.jar" />
@@ -59,7 +59,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tiralabra.logic.NodeTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/build/test/results/TEST-tiralabra.logic.NodeTest.xml crashfile=/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/build/junitvmwatcher6847478345118936288.properties propsfile=/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/build/junit1030668537095028276.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tiralabra.logic.NodeTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/build/test/results/TEST-tiralabra.logic.NodeTest.xml crashfile=/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/build/junitvmwatcher587492239039558902.properties propsfile=/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/build/junit1708312046179598406.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -82,7 +82,7 @@
     <property name="ant.file.Tiralabra-impl" value="/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra/nbproject/build-impl.xml" />
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/endorsed" />
     <property name="libs.groovy-all.src" value="" />
-    <property name="netbeans.dynamic.classpath" value="/home/hexvaara/netbeans-8.0.2/platform/core/org-openide-filesystems.jar:/home/hexvaara/netbeans-8.0.2/platform/core/core.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_ja.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_ja.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_ru.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_ru.jar:/home/hexvaara/netbeans-8.0.2/nb/core/org-netbeans-upgrader.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_ja.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_ru.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_ru.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_ja.jar" />
+    <property name="netbeans.dynamic.classpath" value="/home/hexvaara/netbeans-8.0.2/platform/core/core.jar:/home/hexvaara/netbeans-8.0.2/platform/core/org-openide-filesystems.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_ru.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_ru.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_ja.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_ja.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/core_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/platform/core/locale/org-openide-filesystems_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/nb/core/org-netbeans-upgrader.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_ja.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_ru.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_ja.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_pt_BR.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_ru.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/core_nb_zh_CN.jar:/home/hexvaara/netbeans-8.0.2/nb/core/locale/org-netbeans-upgrader_zh_CN.jar" />
     <property name="java.vm.specification.version" value="1.8" />
     <property name="libs.hibernate4-support.src" value="" />
     <property name="libs.primefaces.classpath" value="/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/primefaces/primefaces-5.0.jar" />
@@ -151,7 +151,7 @@
     <property name="sun.java2d.dpiaware" value="true" />
     <property name="libs.hibernate4-persistence.maven-pom" value="" />
     <property name="libs.DataBindingME-SVG.classpath" value="/home/hexvaara/netbeans-8.0.2/mobility/modules/ext/netbeans_databindingme_svg.jar" />
-    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|x240" />
+    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|Luonto" />
     <property name="libs.PostgreSQLDriver.maven-pom" value="" />
     <property name="java.class.version" value="52.0" />
     <property name="libs.hibernate4-persistencemodelgen.maven-pom" value="" />
@@ -187,7 +187,7 @@
     <property name="libs.restlib.classpath" value="/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/asm-all-repackaged-2.2.0-b21.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/cglib-2.2.0-b21.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/guava-14.0.1.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/hk2-api-2.2.0-b21.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/hk2-locator-2.2.0-b21.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/hk2-utils-2.2.0-b21.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/javax.annotation-api-1.2.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/javax.inject-2.2.0-b21.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/javax.servlet-api-3.0.1.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/jaxb-api-2.2.7.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/jersey-entity-filtering-2.5.1.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/jersey-media-moxy-2.5.1.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/org.osgi.core-4.2.0.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/osgi-resource-locator-1.0.1.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/persistence-api-1.0.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/ext/validation-api-1.1.0.Final.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/jersey-client.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/jersey-common.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/jersey-container-servlet.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/jersey-container-servlet-core.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jersey2/jersey-server.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/eclipselink/eclipselink.jar" />
     <property name="libs.MySQLDriver.maven-pom" value="" />
     <property name="libs.hibernate4-persistence.javadoc" value="/home/hexvaara/netbeans-8.0.2/java/modules/ext/docs/javax.persistence-2.1.0-doc.zip" />
-    <property name="http.nonProxyHosts" value="localhost|127.0.0.1|x240" />
+    <property name="http.nonProxyHosts" value="localhost|127.0.0.1|Luonto" />
     <property name="libs.junit_4.javadoc" value="/home/hexvaara/netbeans-8.0.2/java/docs/junit-4.10-javadoc.jar" />
     <property name="libs.javaee-web-api-6.0.maven-pom" value="" />
     <property name="run.classpath" value=":build/classes" />
@@ -240,10 +240,9 @@
     <property name="libs.DataBindingME-SVG.src" value="/home/hexvaara/netbeans-8.0.2/mobility/sources/netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/Tiralabra.jar" />
     <property name="libs.spring-framework400.maven-pom" value="" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.project.name" value="Tiralabra" />
-    <property name="netbeans.hash.code" value="unique=NB_CND_EXTIDE_GFMOD_GROOVY_JAVA_MOB_PHP_WEBCOMMON_WEBEE09876b167-8cc5-47c4-8221-cf9a0e54d6b0_3ac7a819-5e2d-40ce-9d75-d504549b99a8" />
+    <property name="netbeans.hash.code" value="unique=NB_CND_EXTIDE_GFMOD_GROOVY_JAVA_MOB_PHP_WEBCOMMON_WEBEE08a9f1a2c-156c-4f26-97b6-7a765299fb5a_5b0210b1-04a4-475e-80e6-b27cd96f0e71" />
     <property name="netbeans.default_userdir_root" value="/home/hexvaara/.netbeans" />
     <property name="libs.jsp-compilation-syscp.maven-pom" value="" />
     <property name="sun.cpu.isalist" value="" />
@@ -261,12 +260,11 @@
     <property name="libs.CopyLibs.maven-pom" value="" />
     <property name="libs.spring-framework300.javadoc" value="" />
     <property name="libs.absolutelayout.javadoc" value="" />
-    <property name="guice.disable.misplaced.annotation.check" value="true" />
     <property name="java.specification.name" value="Java Platform API Specification" />
     <property name="do.archive+main.class.available" value="true" />
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="libs.javac-api.classpath" value="/home/hexvaara/netbeans-8.0.2/java/modules/ext/nb-javac-api.jar" />
-    <property name="java.version" value="1.8.0_91" />
+    <property name="java.version" value="1.8.0_101" />
     <property name="run.jvmargs.ide" value="" />
     <property name="javadoc.version" value="false" />
     <property name="libs.MySQLDriver.javadoc" value="" />
@@ -288,8 +286,8 @@
     <property name="work.dir" value="/home/hexvaara/Documents/Courses/tiralabra/2/tiralabra/Tiralabra" />
     <property name="libs.jaxb.classpath" value="/home/hexvaara/netbeans-8.0.2/ide/modules/ext/jaxb/jaxb-impl.jar:/home/hexvaara/netbeans-8.0.2/ide/modules/ext/jaxb/jaxb-xjc.jar:/home/hexvaara/netbeans-8.0.2/ide/modules/ext/jaxb/jaxb1-impl.jar:/home/hexvaara/netbeans-8.0.2/ide/modules/ext/jaxb/activation.jar:/home/hexvaara/netbeans-8.0.2/ide/modules/ext/jaxb/api/jaxb-api.jar:/home/hexvaara/netbeans-8.0.2/ide/modules/ext/jaxb/api/jsr173_1.0_api.jar" />
     <property name="do.depend" value="false" />
-    <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="libs.j2me_common_ant.classpath" value="/home/hexvaara/netbeans-8.0.2/mobility/modules/org-netbeans-modules-j2me-common-ant.jar:/home/hexvaara/netbeans-8.0.2/java/modules/org-netbeans-modules-classfile.jar" />
+    <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="libs.spring-webmvc3.0.classpath" value="/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-webmvc-3.2.7.RELEASE.jar" />
     <property name="libs.swing-layout.classpath" value="/home/hexvaara/netbeans-8.0.2/platform/modules/ext/swing-layout-1.0.4.jar" />
     <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
@@ -298,8 +296,8 @@
     <property name="build.generated.dir" value="build/generated" />
     <property name="line.separator" value="&#xa;" />
     <property name="java.specification.version" value="1.8" />
-    <property name="libs.jaxws21.maven-pom" value="" />
     <property name="java.vm.info" value="mixed mode" />
+    <property name="libs.jaxws21.maven-pom" value="" />
     <property name="nb.junit.batch" value="true" />
     <property name="junit.forkmode" value="perTest" />
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes" />
@@ -311,25 +309,24 @@
     <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
-    <property name="libs.jsf12.src" value="" />
     <property name="libs.DataBindingME-SVG.maven-pom" value="" />
+    <property name="libs.jsf12.src" value="" />
     <property name="libs.struts.javadoc" value="/home/hexvaara/netbeans-8.0.2/enterprise/docs/struts-1.3.10-javadoc.zip" />
     <property name="ignore.failing.tests" value="true" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="libs.primefaces.src" value="" />
     <property name="dist.dir" value="dist" />
     <property name="libs.groovy-all.javadoc" value="" />
-    <property name="securerandom.source" value="file:/dev/./urandom" />
     <property name="testng.debug.mode" value="" />
-    <property name="javac.fork" value="false" />
     <property name="libs.groovy-all.classpath" value="/home/hexvaara/netbeans-8.0.2/groovy/modules/ext/groovy-all.jar" />
+    <property name="javac.fork" value="false" />
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="default.javac.source" value="1.8" />
     <property name="debug-transport-by-os" value="dt_socket" />
     <property name="libs.MySQLDriver.src" value="" />
     <property name="sun.jnu.encoding" value="UTF-8" />
     <property name="build.test.results.dir" value="build/test/results" />
-    <property name="java.runtime.version" value="1.8.0_91-b14" />
+    <property name="java.runtime.version" value="1.8.0_101-b13" />
     <property name="jna.platform.library.path" value="/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/lib64:/usr/lib:/lib" />
     <property name="default.javac.target" value="1.8" />
     <property name="libs.junit_4.classpath" value="/home/hexvaara/netbeans-8.0.2/platform/modules/ext/junit-4.10.jar" />
@@ -337,8 +334,8 @@
     <property name="nb.junit.single" value="false" />
     <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="netbeans.dirs" value="/home/hexvaara/netbeans-8.0.2/nb:/home/hexvaara/netbeans-8.0.2/ergonomics:/home/hexvaara/netbeans-8.0.2/ide:/home/hexvaara/netbeans-8.0.2/extide:/home/hexvaara/netbeans-8.0.2/java:/home/hexvaara/netbeans-8.0.2/apisupport:/home/hexvaara/netbeans-8.0.2/webcommon:/home/hexvaara/netbeans-8.0.2/websvccommon:/home/hexvaara/netbeans-8.0.2/enterprise:/home/hexvaara/netbeans-8.0.2/mobility:/home/hexvaara/netbeans-8.0.2/profiler:/home/hexvaara/netbeans-8.0.2/python:/home/hexvaara/netbeans-8.0.2/php:/home/hexvaara/netbeans-8.0.2/identity:/home/hexvaara/netbeans-8.0.2/harness:/home/hexvaara/netbeans-8.0.2/cnd:/home/hexvaara/netbeans-8.0.2/dlight:/home/hexvaara/netbeans-8.0.2/groovy:/home/hexvaara/netbeans-8.0.2/extra:/home/hexvaara/netbeans-8.0.2/javacard:/home/hexvaara/netbeans-8.0.2/javafx:" />
-    <property name="libs.jstl.javadoc" value="/home/hexvaara/netbeans-8.0.2/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.jsf20.javadoc" value="/home/hexvaara/netbeans-8.0.2/enterprise/docs/javaee-doc-api.jar" />
+    <property name="libs.jstl.javadoc" value="/home/hexvaara/netbeans-8.0.2/enterprise/docs/javaee-doc-api.jar" />
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-oracle/jre/lib/ext:/usr/java/packages/lib/ext" />
     <property name="libs.metro.src" value="" />
     <property name="libs.absolutelayout.classpath" value="/home/hexvaara/netbeans-8.0.2/java/modules/ext/AbsoluteLayout.jar" />
@@ -352,7 +349,7 @@
     <property name="do.mkdist" value="true" />
     <property name="libs.absolutelayout.src" value="" />
     <property name="libs.jpa20-persistence.classpath" value="/home/hexvaara/netbeans-8.0.2/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar" />
-    <property name="os.version" value="4.2.0-41-generic" />
+    <property name="os.version" value="4.2.0-36-generic" />
     <property name="application.args" value="" />
     <property name="libs.javaee-api-7.0.maven-pom" value="" />
     <property name="main.class.available" value="true" />
@@ -366,8 +363,8 @@
     <property name="nb.internal.action.name" value="test" />
     <property name="libs.javaee-api-7.0.javadoc" value="/home/hexvaara/netbeans-8.0.2/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.eclipselink.classpath" value="/home/hexvaara/netbeans-8.0.2/java/modules/ext/eclipselink/eclipselink.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
-    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
     <property name="libs.beans-binding.javadoc" value="/home/hexvaara/netbeans-8.0.2/java/docs/beansbinding-1.2.1-doc.zip" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="libs.CopyLibs.classpath" value="/home/hexvaara/netbeans-8.0.2/java/ant/extra/org-netbeans-modules-java-j2seproject-copylibstask.jar" />
     <property name="libs.spring-framework300.classpath" value="/home/hexvaara/netbeans-8.0.2/ide/modules/org-apache-commons-logging.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/cglib-2.2.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-aop-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-aspects-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-beans-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-build-src-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-context-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-context-support-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-core-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-expression-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-framework-bom-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-instrument-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-instrument-tomcat-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-jdbc-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-jms-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-orm-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-oxm-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-struts-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-test-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-tx-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-web-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-webmvc-3.2.7.RELEASE.jar:/home/hexvaara/netbeans-8.0.2/java/modules/ext/spring-3.0/spring-webmvc-portlet-3.2.7.RELEASE.jar" />
@@ -385,8 +382,8 @@
     <property name="libs.junit.src" value="" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="tiralabra.Tiralabra" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="/home/hexvaara/netbeans-8.0.2/extide/ant/lib/ant.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/servlet3.1-jsp2.3-api.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/glassfish-jspparser-4.0.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jsf-2_2/javax.faces.jar:/home/hexvaara/netbeans-8.0.2/enterprise/modules/ext/jstl-api.jar:/home/hexvaara/netbeans-8.0.2/extide/ant/lib/ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
     <property name="file.encoding" value="UTF-8" />
@@ -398,10 +395,10 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/home/hexvaara/netbeans-8.0.2/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="tiralabra.logic.NodeTest" name="testInitNodeDefault" time="0.003" />
-  <testcase classname="tiralabra.logic.NodeTest" name="testDistance" time="0.0" />
-  <testcase classname="tiralabra.logic.NodeTest" name="testToString" time="0.0" />
   <testcase classname="tiralabra.logic.NodeTest" name="testInitNodeOverloaded" time="0.001" />
+  <testcase classname="tiralabra.logic.NodeTest" name="testDistance" time="0.001" />
+  <testcase classname="tiralabra.logic.NodeTest" name="testToString" time="0.0" />
+  <testcase classname="tiralabra.logic.NodeTest" name="testInitNodeDefault" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

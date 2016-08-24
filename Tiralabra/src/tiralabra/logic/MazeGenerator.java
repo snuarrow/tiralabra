@@ -5,6 +5,7 @@
  */
 package tiralabra.logic;
 
+import tiralabra.logic.structures.NodeMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,11 +28,11 @@ public class MazeGenerator {
     private NodeMap nodemap;
     private int xsize, ysize;
     
-    public MazeGenerator()
+    public MazeGenerator(int xsize, int ysize)
     {
-        amaze = new int[20][20];
-        xsize = 20;
-        ysize = 20;
+        amaze = new int[xsize][ysize];
+        this.xsize = xsize;
+        this.ysize = ysize;
         nodemap = new NodeMap(xsize, ysize);
         
         sets = new ArrayList<>();
@@ -42,6 +43,11 @@ public class MazeGenerator {
         for (Node n : nodemap.getAllNodes()) {
             unprocessed.add(n);
         }
+    }
+    
+    public byte[][] getStartFrame()
+    {
+        return nodemap.getByteMap();
     }
     
     int mazeSetId = 1;

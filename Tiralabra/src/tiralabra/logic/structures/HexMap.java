@@ -15,7 +15,7 @@ import tiralabra.logic.Node;
  */
 public class HexMap {
     
-    Tuppel[] memory;
+    Tuple[] memory;
     
     public HexMap()
     {
@@ -39,19 +39,19 @@ public class HexMap {
         {
             if (memory == null || memory.length == 0)
             {
-                memory = new Tuppel[1];
-                memory[0] = new Tuppel(key, value);
+                memory = new Tuple[1];
+                memory[0] = new Tuple(key, value);
             }
             else enlarge();
         
-            memory[memory.length -1] = new Tuppel(key,value);
+            memory[memory.length -1] = new Tuple(key,value);
         }
     }
     
     public boolean containsKey(Node key)
     {
         if (memory == null || memory.length == 0) return false;
-        for (Tuppel slot : memory) {
+        for (Tuple slot : memory) {
             if (slot._1.hashCode() == key.hashCode()) return true;
         }
         return false;
@@ -60,7 +60,7 @@ public class HexMap {
     public Object get(Node key)
     {
         if (memory == null || memory.length == 0) return null;
-        for (Tuppel slot : memory) {
+        for (Tuple slot : memory) {
             if (slot._1.hashCode() == key.hashCode()) return slot._2;
         }
         return null;
@@ -70,11 +70,11 @@ public class HexMap {
     {
         int size = memory.length;
         
-        Tuppel[] temp = new Tuppel[size];
+        Tuple[] temp = new Tuple[size];
         for (int i = 0; i < size; i++) {
             temp[i] = memory[i];
         }
-        memory = new Tuppel[size+1];
+        memory = new Tuple[size+1];
         
         for (int i = 0; i < size; i++) {
             memory[i] = temp[i];
