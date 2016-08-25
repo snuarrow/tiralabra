@@ -29,7 +29,7 @@ public class Astar3 {
     //HashMap<Node, Double> fScore;
     HexMap fScore;
     
-    public Astar3(byte[][] bytemap)
+    public Astar3(int[][] bytemap)
     {
         this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
         //this.closedSet = new ArrayList<>();
@@ -53,7 +53,7 @@ public class Astar3 {
         return finished;
     }
     
-    public byte[][] iterate()
+    public int[][] iterate()
     {
         if (!openSet.isEmpty() && !finished)
         {
@@ -78,10 +78,10 @@ public class Astar3 {
             }
             
             
-            return nodemap.getByteMap();
+            return nodemap.getIntMap();
         }
         
-        return nodemap.getByteMap();
+        return nodemap.getIntMap();
     }
     
     private boolean finished = false;

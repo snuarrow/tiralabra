@@ -23,10 +23,10 @@ import tiralabra.logic.Node;
 public class NodeMapTest {
     
     private NodeMap nmap;
-    private final byte[][] bytemap;
+    private final int[][] bytemap;
     
     public NodeMapTest() {
-        byte[][] bytemap = {
+        int[][] bytemap = {
             {1,4,1,1,1,1,1,1,1,1},
             {3,1,1,1,1,1,1,1,1,1},
             {1,1,0,1,1,1,1,1,1,1},
@@ -66,7 +66,7 @@ public class NodeMapTest {
     public void testConstructorBlack() {
         NodeMap n = new NodeMap(10,10);
         
-        byte[][] bytemap = {
+        int[][] bytemap = {
             {1,1,1,1,1,1,1,1,1,1},
             {1,1,1,1,1,1,1,1,1,1},
             {1,1,1,1,1,1,1,1,1,1},
@@ -79,7 +79,7 @@ public class NodeMapTest {
             {1,1,1,1,1,1,1,1,1,1}
         };
         
-        Assert.assertArrayEquals(bytemap, n.getByteMap());
+        Assert.assertArrayEquals(bytemap, n.getIntMap());
     }
     
     @Test
@@ -87,7 +87,7 @@ public class NodeMapTest {
     {
         NodeMap n = new NodeMap(10,10, bytemap);
         
-        Assert.assertArrayEquals(bytemap, n.getByteMap());
+        Assert.assertArrayEquals(bytemap, n.getIntMap());
         assertEquals(1, n.getGoal().x);
         assertEquals(0, n.getGoal().y);
         

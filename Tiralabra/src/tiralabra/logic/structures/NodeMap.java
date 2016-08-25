@@ -23,13 +23,15 @@ public class NodeMap {
     private int xgoal, ygoal, xstart, ystart;
     
     //tested
-    public NodeMap(int xsize, int ysize, byte[][] bytemap)
+    public NodeMap(int xsize, int ysize, int[][] bytemap)
     {
         nodemap = new Node[xsize][ysize];
         this.xsize = xsize;
         this.ysize = ysize;
         init(bytemap);
     }
+    
+    
     
     //tested
     public NodeMap(int xsize, int ysize)
@@ -59,7 +61,7 @@ public class NodeMap {
     }
     
     //tested
-    private void init(byte[][] bytemap)
+    private void init(int[][] bytemap)
     {
         for (int i = 0; i < xsize; i++) {
             for (int j = 0; j < ysize; j++) {
@@ -93,6 +95,15 @@ public class NodeMap {
     public Node getNode(int x, int y)
     {
         return nodemap[x][y];
+    }
+    
+    public void greenToWhite()
+    {
+        for (Node[] nodemap1 : nodemap) {
+            for (Node nodemap11 : nodemap1) {
+                if (nodemap11.color == 4) nodemap11.color = 0;
+            }
+        }
     }
     
     //tested
@@ -177,11 +188,11 @@ public class NodeMap {
         return r;
     }
     
-    public byte[][] getByteMap()
+    public int[][] getIntMap()
     {
-        byte[][] temp = new byte[xsize][ysize];
-        for (byte i = 0; i < xsize; i++) {
-            for (byte j = 0; j < ysize; j++) {
+        int[][] temp = new int[xsize][ysize];
+        for (int i = 0; i < xsize; i++) {
+            for (int j = 0; j < ysize; j++) {
                 temp[i][j] = nodemap[i][j].color;
             }
         }

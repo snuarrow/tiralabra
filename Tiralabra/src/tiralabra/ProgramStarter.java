@@ -24,7 +24,7 @@ public class ProgramStarter {
     
     public void startFrame()
     {
-        byte[][] bytemap = 
+        int[][] bytemap = 
         {
             {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -73,19 +73,19 @@ public class ProgramStarter {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
         };
         */
-        int pixelsize = 10;
-        int slotsX = 100;
-        int slotsY = 100;
+        int pixelsize = 1;
+        int slotsX = 1600;
+        int slotsY = 900;
         
         
         
         f = new JFrame();
-        MainFrame m = new MainFrame(this, bytemap, pixelsize, slotsX, slotsY);
-        m.setBackground(Color.LIGHT_GRAY);
+        MainFrame m = new MainFrame(this, pixelsize, slotsX, slotsY);
+        f.setBackground(Color.BLACK);
         f.add(m);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(pixelsize*slotsY, pixelsize*slotsX);
+        f.setSize(1600, 900);
         f.setLocationRelativeTo(null);
     }
     public void closeFrame()

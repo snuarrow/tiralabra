@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public class GameOfLife {
     NodeMap nodemap;
     
-    public GameOfLife(int xsize, int ysize, byte[][] bytemap)
+    public GameOfLife(int xsize, int ysize, int[][] bytemap)
     {
         this.nodemap = new NodeMap(xsize, ysize, bytemap);
     }
     
-    public byte[][] iterate()
+    public int[][] iterate()
     {
-        NodeMap tempmap = new NodeMap(20, 20, nodemap.getByteMap());
+        NodeMap tempmap = new NodeMap(20, 20, nodemap.getIntMap());
         
         //System.out.println(nodemap.getAllNodes().size());
         System.out.println("iterate");
@@ -74,8 +74,8 @@ public class GameOfLife {
         }
         */
                 
-        nodemap = new NodeMap(20,20, tempmap.getByteMap());
+        nodemap = new NodeMap(20,20, tempmap.getIntMap());
         
-        return nodemap.getByteMap();
+        return nodemap.getIntMap();
     }
 }

@@ -22,7 +22,7 @@ import tiralabra.logic.structures.MazeSet;
 public class MazeGenerator {
     
     private int[][] amaze;
-    private ArrayList<MazeSet> sets;
+    private ArrayList<ArrayList<Node>> sets;
     private ArrayList<Node> unprocessed;
     private ArrayList<Node> processed;
     private NodeMap nodemap;
@@ -45,9 +45,9 @@ public class MazeGenerator {
         }
     }
     
-    public byte[][] getStartFrame()
+    public int[][] getStartFrame()
     {
-        return nodemap.getByteMap();
+        return nodemap.getIntMap();
     }
     
     int mazeSetId = 1;
@@ -58,8 +58,8 @@ public class MazeGenerator {
         if (sets.isEmpty()) 
         {
             amaze[n.x][n.y] = mazeSetId;
-            sets.add(new MazeSet(mazeSetId++));
-            sets.get(0).set.add(n);
+            sets.add(new ArrayList<>());
+            sets.get(0).add(n);
             return;
         }
         
@@ -76,8 +76,8 @@ public class MazeGenerator {
         if (neighboringSets.isEmpty())
         {
             amaze[n.x][n.y] = mazeSetId;
-            sets.add(new MazeSet(mazeSetId++));
-            sets.get(sets.size()-1).set.add(n);
+            sets.add(new ArrayList<>());
+            sets.get(sets.size()-1).add(n);
             return;
         }
         else if (neighboringSets.size() == 1)
@@ -97,13 +97,8 @@ public class MazeGenerator {
     
     private void putIntoSet(Node n, int setId)
     {
-        for (MazeSet set : sets) {
-            if (set.id == setId) 
-            {
-                set.set.add(n);
-                amaze[n.x][n.y] = (byte) setId;
-            }
-        }
+        sets.get(setId).add(n);
+        
     }
     
     public void printAmaze()
@@ -123,6 +118,66 @@ public class MazeGenerator {
     
     private void joinSets()
     {
+        System.out.println("i was called");
+        //for (int i = 0; i < sets.size(); i++) {
+            
+        int i = smallestSetIndex();
+        
+        System.out.println(i + "  size: "+sets.get(i).get(0));
+        
+            ArrayList<Node> allNeighbours = getNeighboursOfSet(sets.get(i));
+            ArrayList<Node> filtered = new ArrayList<>();
+            
+            for (Node n : allNeighbours) // find and connect touching whitesets
+            {
+                int nset = belongsToSet(n);
+                
+                if (nset == -1 && nodemap.getColor(n) == 0)
+                {
+                    sets.get(i).add(n);
+                    System.out.println("im");
+                    return;
+                }
+                
+                if (nodemap.getColor(n) == 1) filtered.add(n);
+                
+                if (i != nset && nodemap.getColor(n) == 0)
+                {
+                    joinSets(i, nset);
+                    return;
+                }
+            }
+            
+            for (Node black : filtered) {
+                
+                ArrayList<Integer> setIds = new ArrayList<>();
+                
+                for (Node neighbour : nodemap.getCrossNeighbours(black))
+                {
+                    int setid = belongsToSet(neighbour);
+                    
+                    if (setid != -1 && !setIds.contains(setid)) setIds.add(setid);
+                    
+                }
+                
+                if (setIds.size() > 1)
+                {
+                    for (int j = 1; j < 10; j++) {
+                        joinSets(setIds.get(0), setIds.get(j));
+                        nodemap.changeColor(black, 0);
+                        return;
+                    }
+                }
+            }
+           
+            
+        System.out.println("went throug");
+        if (sets.get(i).size() == 1) nodemap.changeColor(sets.get(i).get(0), 3);
+        //}
+        
+        
+        
+        /*
         if (blacks == null) 
         {
             blacks = nodemap.getAllRemainingBlacks();
@@ -150,6 +205,22 @@ public class MazeGenerator {
             joinSets(neighboringSetIds.get(0), neighboringSetIds.get(1));
             nodemap.changeColor(randomBlack, 0);
         }
+        if (neighboringSetIds.size() > 2)
+        {
+            for (int i = 1; i < neighboringSetIds.size(); i++) {
+                joinSets(neighboringSetIds.get(0), neighboringSetIds.get(i));
+            }
+        }
+        */
+        
+        
+        
+        /*
+        getNeighboursOfSet(sets.get(smallestSetIndex())).forEach(black -> 
+        {
+            
+        });
+        */
         
         // if two of cross neighbours belongs to different sets, join sets and color randomblack white, add randomblack to The set and remove randomblack from blacks, continue
         
@@ -160,32 +231,90 @@ public class MazeGenerator {
     }
     
     
+    private ArrayList<Node> getNeighboursOfSet(ArrayList<Node> set)
+    {
+        ArrayList<Node> neighbours = new ArrayList<>();
+        
+        for (Node n : set) {
+            nodemap.getCrossNeighbours(n).forEach(a -> 
+            {
+                if (!neighbours.contains(a)) neighbours.add(a);
+            });
+        }
+        return neighbours;
+    }
+    
+    
+    private int smallestSetIndex()
+    {
+        int smallestSetSize = Integer.MAX_VALUE;
+        int index = 0;
+        for (int i = 0; i < sets.size(); i++) {
+            if (sets.get(i).size() < smallestSetSize)
+            {
+                smallestSetSize = sets.get(i).size();
+                index = i;
+            }
+        }
+        return index;
+    }
+    
+    
+    private void fixBlacks() // not implemented yet
+    {
+        nodemap.getAllRemainingBlacks().forEach(n -> 
+        {
+            nodemap.getCrossNeighbours(n).forEach(c -> 
+            {
+                if (c.color == 1)
+                {
+                    if (n.x > c.x)
+                    {
+                        // yläkulmat suhteessa n.
+                        if (n.y > c.y)
+                        {
+                            // vasen ylä
+                            
+                        } else 
+                        {
+                            // oikee ylä
+                        }
+                    } else
+                    {
+                        if (n.y > c.y)
+                        {
+                            // vasen ala
+                            
+                        } else 
+                        {
+                            // oikee ala
+                        }
+                        // alakulmat
+                    }
+                }
+            });
+        });
+    }
+    
+    
     
     private void joinSets(int a, int b)
     {
-        MazeSet aa = null;
-        MazeSet bb = null;
+        //System.out.println(a+" "+b);
         
-        for (MazeSet set : sets) {
-            if (set.id == a) aa = set;
-            else if (set.id == b) bb = set;
-        }
         
-        //System.out.println("aa: "+aa.id+" bb: "+bb.id+" aasize: "+aa.set.size()+" bbsize: "+bb.set.size());
+        for (Node n : sets.get(b)) sets.get(a).add(n);
+        sets.remove(b);
         
-        for (Node n : bb.set) {
-            //System.out.println("kävinkö ees täällä?");
-            amaze[n.x][n.y] = a;
-            aa.set.add(n);
-        }
-        
-        sets.remove(bb);
     }
     
     private int belongsToSet(Node n)
     {
-        for (MazeSet set : sets) {
-            if (set.set.contains(n)) return set.id;
+        //if (sets.isEmpty()) return -1;
+        
+        for (int i = 0; i < sets.size(); i++)
+        {
+            if (sets.get(i).contains(n)) return i;
         }
         return -1;
     }
@@ -197,7 +326,36 @@ public class MazeGenerator {
         return finished;
     }
     
-    public byte[][] iterate()
+    private void findSetlessNodes()
+    {
+        nodemap.getAllNodes().forEach(node -> 
+        {
+            if (nodemap.getColor(node) == 0 && belongsToSet(node) == -1) nodemap.changeColor(node, 4);
+        });
+    }
+    
+    private boolean removeRandomBlack()
+    {
+        if (!unprocessed.isEmpty())
+        {
+            int randomIndex = new Random().nextInt(unprocessed.size());
+            Node randomUnprocessedNode = unprocessed.get(randomIndex);
+            unprocessed.remove(randomIndex);
+            
+            int blackCount = 0;
+            int whiteCount = 0;
+            nodemap.getCrossNeighbours(randomUnprocessedNode).forEach(neighbourOfRandom -> 
+            {
+                
+            });
+            
+            
+            
+            return true;
+        } return false;
+    }
+    
+    public int[][] iterate()
     {
         if (!unprocessed.isEmpty())
         {
@@ -223,12 +381,12 @@ public class MazeGenerator {
             }
             //System.out.println("");
             //printAmaze();
-            return nodemap.getByteMap();
+            return nodemap.getIntMap();
         }   
         
-        if (sets.size()>1) joinSets();
+        if (sets.size()>1) findSetlessNodes();
         else finished = true;
         
-        return nodemap.getByteMap();
+        return nodemap.getIntMap();
     }
 }

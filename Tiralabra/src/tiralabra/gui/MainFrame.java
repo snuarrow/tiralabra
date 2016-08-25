@@ -5,17 +5,22 @@
  */
 package tiralabra.gui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import tiralabra.ProgramStarter;
+import tiralabra.communications.CommunicationBus;
 import tiralabra.logic.Astar3;
 import tiralabra.logic.GameOfLife;
 import tiralabra.logic.MazeGenerator;
+import tiralabra.logic.MazeGenerator2;
 
 /**
  * Graphical user interface
@@ -28,24 +33,27 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
     private final Timer t;
     //private Board board;
     private Astar3 astar;
-    private MazeGenerator mazegenerator;
+    private MazeGenerator2 mazegenerator;
     private GameOfLife gol;
-    private int pixelsize;
-    private int slotsX;
-    private int slotsY;
+    private final int pixelsize;
+    private final int slotsX;
+    private final int slotsY;
+    private CommunicationBus bus;
     
     int delay = 1;
     
-    private byte[][] bytemap;
+    private int[][] bytemap;
     
-    public MainFrame(ProgramStarter gamestarter, byte[][] bytemap, int pixelsize, int slotsX, int slotsY)
+    public MainFrame(ProgramStarter gamestarter, int pixelsize, int slotsX, int slotsY)
     {
         this.pixelsize = pixelsize;
         this.slotsX = slotsX;
         this.slotsY = slotsY;
         
+        bus = new CommunicationBus();
         
-        this.mazegenerator = new MazeGenerator(slotsX,slotsY);
+        this.mazegenerator = new MazeGenerator2(slotsX,slotsY, bus );
+        //this.mazegenerator.start();
         this.bytemap = mazegenerator.getStartFrame();
         //this.gol = new GameOfLife(slotsX,slotsY,bytemap);
         this.astar = new Astar3(bytemap);
@@ -62,19 +70,39 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
      * renderöi aloitusvalikon näkymän
      * @param g 
      */
-    public void in_program(Graphics2D g)
+    public void in_program(Graphics2D g) throws InterruptedException
     {
-        byte x = 0;
-        byte y = 0;
+        //drawPixel(g,400,400,1);
         
+        
+        
+        drawPixel(g,bus.x(),bus.y(),bus.c());
+        /*
         for (int i = 0; i < slotsX; i++) {
             for (int j = 0; j < slotsY; j++) {
-                if (bytemap[j][i] == 1) drawObstacle(g, i, j);
-                if (bytemap[j][i] == 2) drawRed(g, i, j);
-                if (bytemap[j][i] == 3) drawBlue(g, i, j);
-                if (bytemap[j][i] == 4) drawGreen(g, i, j);
+                
+                
+                
+                if (bytemap[i][j] == 1) drawObstacle(g, i, j);
+                if (bytemap[i][j] == 2) drawRed(g, i, j);
+                if (bytemap[i][j] == 3) drawBlue(g, i, j);
+                if (bytemap[i][j] == 4) drawGreen(g, i, j);
             }
         }
+        */
+    }
+    
+    private void drawPixel(Graphics2D g, int x, int y, int c)
+    {
+        
+        if(c == 0) g.setColor(Color.white);
+        if(c == 1) g.setColor(Color.black);
+        if(c == 2) g.setColor(Color.red);
+        if(c == 3) g.setColor(Color.blue);
+        if(c == 4) g.setColor(Color.green);
+        
+        
+        g.fillRect(x, y, 1, 1);
     }
     
     private void drawObstacle(Graphics2D g, int x, int y)
@@ -102,29 +130,56 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
     @Override
     public void paintComponent(Graphics g)
     {
-        super.paintComponent(g);
+        //super.paintImmediately(500, 500, 200, 100);
+        super.paintChildren(g);
         Graphics2D g2 = (Graphics2D) g;
-        in_program(g2);
+        
+        try {
+            in_program(g2);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
     
 
     @Override
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        iteration();
+        repaint();
+        
+        mazegenerator.iterate();
+        
     }
     
-    boolean initastar = false;
-    boolean initgol = true;
+    public void doWait()
+    {
+        synchronized(bus)
+        {
+            try
+            {
+                bus.wait();
+            } catch (InterruptedException e) {}
+        }
+    }
     
     private void iteration()
     {
+        
+        
         repaint();
+        
+        
+        
+        
+        //mazegenerator.iterate();
+        
+        //doWait();
         
         //bytemap = astar.iterate();
         
         //bytemap = gol.iterate();
         
-        
+        /*
         if (!mazegenerator.isFinished()) bytemap = mazegenerator.iterate();
         else if (initastar == false) 
         {
@@ -140,11 +195,11 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
             if (!astar.isFinished())
             {
                 bytemap = astar.iterate();
-                delay = 100;
+                delay = 10;
             } 
             
         }
-        
+        */
         
     }
 
