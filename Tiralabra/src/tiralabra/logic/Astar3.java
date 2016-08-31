@@ -5,9 +5,11 @@
  */
 package tiralabra.logic;
 
+import java.util.HashMap;
 import tiralabra.logic.structures.NodeMap;
 import tiralabra.logic.structures.HexMap;
-import tiralabra.logic.structures.NodeQueue;
+import tiralabra.logic.structures.HexSet;
+import tiralabra.logic.structures.NodeQueue2;
 
 /**
  * A* shortest path finding algorithm.
@@ -18,33 +20,33 @@ import tiralabra.logic.structures.NodeQueue;
 public class Astar3 {
     
     NodeMap nodemap;
-    //ArrayList<Node> closedSet;
-    //ArrayList<Node> openSet;
-    NodeQueue closedSet;
-    NodeQueue openSet;
-    //HashMap<Node, Node> cameFrom;
-    HexMap cameFrom;
-    //HashMap<Node, Double> gScore;
-    HexMap gScore;
-    //HashMap<Node, Double> fScore;
-    HexMap fScore;
+    //HashSet<Node> closedSet;
+    //HashSet<Node> openSet;
+    HexSet closedSet;
+    NodeQueue2 openSet;
+    HashMap<Node, Node> cameFrom;
+    //HexMap cameFrom;
+    HashMap<Node, Double> gScore;
+    //HexMap gScore;
+    HashMap<Node, Double> fScore;
+    //HexMap fScore;
     
     public Astar3(int[][] bytemap)
     {
         this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
-        //this.closedSet = new ArrayList<>();
-        //this.openSet = new ArrayList<>();
-        this.closedSet = new NodeQueue();
-        this.openSet = new NodeQueue();
+        //this.closedSet = new HashSet<>();
+        //this.openSet = new HashSet<>();
+        this.closedSet = new HexSet(bytemap.length,bytemap[0].length);
+        this.openSet = new NodeQueue2();
         this.openSet.add(nodemap.getStart());
         
-        //this.cameFrom = new HashMap<>();
-        this.cameFrom = new HexMap();
-        //this.gScore = new HashMap<>();
-        this.gScore = new HexMap();
+        this.cameFrom = new HashMap<>();
+        //this.cameFrom = new HexMap();
+        this.gScore = new HashMap<>();
+        //this.gScore = new HexMap();
         this.gScore.put(nodemap.getStart(), 0.0);
-        //this.fScore = new HashMap<>();
-        this.fScore = new HexMap();
+        this.fScore = new HashMap<>();
+        //this.fScore = new HexMap();
         this.fScore.put(nodemap.getStart(), heuristic_cost_estimate(nodemap.getStart(),nodemap.getGoal()));
     }
     
@@ -55,6 +57,12 @@ public class Astar3 {
     
     public int[][] iterate()
     {
+        //for (int i = 0; i < 10; i++) {
+        
+        for (int i = 0; i < 100; i++) {
+            
+        
+        
         if (!openSet.isEmpty() && !finished)
         {
             Node current = lowestFScoreInOpenSet();
@@ -78,9 +86,10 @@ public class Astar3 {
             }
             
             
-            return nodemap.getIntMap();
-        }
+            //return nodemap.getIntMap();
+        } else break;
         
+        }
         return nodemap.getIntMap();
     }
     
@@ -98,9 +107,11 @@ public class Astar3 {
     
     private Node lowestFScoreInOpenSet()
     {
+        /*
         Node best = null;
         double bestFScore = Integer.MAX_VALUE;
         for (Node nodeInOpenSet : openSet.getContent()) {
+            if (nodeInOpenSet == null) continue;
             if (fScore.containsKey(nodeInOpenSet))
             {
                 double currentFScore = (Double) fScore.get(nodeInOpenSet);
@@ -110,8 +121,12 @@ public class Astar3 {
                     best = nodeInOpenSet;
                 }
             }
+            
         }
         return best;
+        */
+        
+        return openSet.lowestFscoreInOpenSet(fScore);
     }
     
     private double heuristic_cost_estimate(Node from, Node to)

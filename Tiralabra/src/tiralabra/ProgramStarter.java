@@ -73,9 +73,9 @@ public class ProgramStarter {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
         };
         */
-        int pixelsize = 1;
-        int slotsX = 1600;
-        int slotsY = 900;
+        int pixelsize = 4;
+        int slotsX = 400;
+        int slotsY = 450;
         
         
         

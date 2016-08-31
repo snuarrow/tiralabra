@@ -27,7 +27,7 @@ public class MazeGenerator2 {
     private ArrayList<Node> finalStageWhites;
     ArrayList<ArrayList<Node>> sets;
     private CommunicationBus bus;
-    private int defaultBuffer = 1000;
+    private int defaultBuffer = 10000;
     
     public MazeGenerator2(int x, int y, CommunicationBus bus)
     {
@@ -57,18 +57,58 @@ public class MazeGenerator2 {
     }
     
     
-    
+    private boolean s1 = true;
+    private boolean s2 = true;
+    private boolean s3 = true;
+    //private boolean s4 = true;
+    private boolean s5 = true;
     
     public int[][] iterate()
     {
+        if (!s1 && !s2 && !s3 && !s5) finished = true;
+        
         //System.out.println("was called");
+        if (s1)
+        {
+            //System.out.println("stage1");
+            if (!removeRandomBlack()) s1 = false;
+        }
+        else if (s2)
+        {
+            //System.out.println("stage2");
+            if (!removeSingleBlacks()) s2 = false;
+        }
+        else if (s3)
+        {
+            //System.out.println("stage3");
+            if (!fillSingleWhites()) s3 = false;
+        }
+        //else if (s4)
+        //{
+        //    //System.out.println("stage4");
+        //    for (int i = 0; i < 10; i++)
+        //        if (!findSet() && remainingWhites.isEmpty()) s4 = false;
+        //}
+        else if (s5)
+        {
+            //nodemap.greenToWhite();
+            nodemap.swapColors(0, 1);
+            s5 = false;
+        }
+        
+        
+        /*
         if (removeRandomBlack());
         else if (removeSingleBlacks());
         else if (fillSingleWhites());
         else 
         {
-            for(int i = 0; i < 20; i++) findSet();
+            for(int i = 0; i < 20; i++) 
+            {
+                if (!findSet() && remainingWhites.isEmpty()) break;
+            }
         }
+        */
         
         return nodemap.getIntMap();
     }
@@ -133,22 +173,35 @@ public class MazeGenerator2 {
         return false;
     }
     
-    
+    private ArrayList<Node> remainingWhites;
     
     private boolean findSet()
     {
+        if (remainingWhites == null)
+        {
+            remainingWhites = new ArrayList<>();
+            for (Node n : nodemap.getAllNodes())
+            {
+                if (n.color == 0)
+                {
+                    remainingWhites.add(n);
+                }
+            }
+        }
+        
         ArrayList<Node> set = new ArrayList<>();
         Queue<Node> queue = new LinkedList<>();
         
        
         
-        for (Node n : nodemap.getAllNodes())
+        for (Node n : remainingWhites)
         {
             //System.out.println("finding set");
             if (n.color == 0) 
             {
                 queue.add(n);
                 nodemap.changeColor(n, 4);
+                remainingWhites.remove(n);
                 break;
             }
         }
@@ -171,7 +224,11 @@ public class MazeGenerator2 {
             }
         }
         
-        set.stream().forEach(n -> nodemap.changeColor(n, 4));
+        set.stream().forEach(n -> 
+        {
+            nodemap.changeColor(n, 4);
+            remainingWhites.remove(n);
+        });
         
         sets.add(set);
         

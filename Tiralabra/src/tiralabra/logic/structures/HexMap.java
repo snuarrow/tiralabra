@@ -50,6 +50,7 @@ public class HexMap {
     
     public boolean containsKey(Node key)
     {
+        if (key == null) return false;
         if (memory == null || memory.length == 0) return false;
         for (Tuple slot : memory) {
             if (slot._1.hashCode() == key.hashCode()) return true;
@@ -68,6 +69,7 @@ public class HexMap {
     
     private void enlarge()
     {
+        System.out.println("hexmap: "+this.hashCode()+" size: "+memory.length);
         int size = memory.length;
         
         Tuple[] temp = new Tuple[size];

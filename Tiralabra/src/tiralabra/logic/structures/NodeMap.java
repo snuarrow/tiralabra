@@ -32,7 +32,6 @@ public class NodeMap {
     }
     
     
-    
     //tested
     public NodeMap(int xsize, int ysize)
     {
@@ -96,6 +95,17 @@ public class NodeMap {
     {
         return nodemap[x][y];
     }
+    
+    public void swapColors(int a, int b)
+    {
+        for (Node[] nodemap1 : nodemap) {
+            for (Node nodemap11 : nodemap1) {
+                if (nodemap11.color == a) nodemap11.color = (byte) b;
+                else if (nodemap11.color == b) nodemap11.color = (byte) a; 
+            }
+        }
+    }
+    
     
     public void greenToWhite()
     {
