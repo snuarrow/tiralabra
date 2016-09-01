@@ -39,11 +39,11 @@ public class BufferedStrategyTest extends JFrame implements Runnable, WindowList
     private CommunicationBus bus;
     private int[][] map;
     private int[][] competitorMap;
-    private int pixelsize = 2;
-    private int slotsx = 400;
-    private int slotsy = 800;
+    private int pixelsize = 4;
+    private int slotsx = 200;
+    private int slotsy = 400;
     //private int competitors = 4;
-    private int slotleveys = 200;
+    private int slotleveys = 100;
     
     
     public BufferedStrategyTest() 
@@ -58,7 +58,7 @@ public class BufferedStrategyTest extends JFrame implements Runnable, WindowList
         setVisible(true);
 
         bus = new CommunicationBus();
-        mazegenerator = new MazeGenerator2(slotleveys, slotsx, bus);
+        mazegenerator = new MazeGenerator2(slotleveys, slotsx);
         
         map = new int[slotsy][slotsx];
         
@@ -182,7 +182,11 @@ public class BufferedStrategyTest extends JFrame implements Runnable, WindowList
                     {
                         start = false;
                         int startpointheight = 80;
-                        while (competitorMap[slotleveys/2][startpointheight++] == 0) competitorMap[slotleveys/2][startpointheight] = 4;
+                        while (competitorMap[slotleveys/2][startpointheight++] == 0) 
+                        {
+                            competitorMap[slotleveys/2][startpointheight] = 4;
+                        }
+                        System.out.println("startpoint: "+slotleveys/2+" , "+startpointheight);
                         competitorMap[slotleveys/2][slotsx-1] = 3;
                         astar = new Astar3(competitorMap);
                         bfs = new Bfs(competitorMap);
@@ -194,21 +198,23 @@ public class BufferedStrategyTest extends JFrame implements Runnable, WindowList
                     else
                     {
                         if (!astar.isFinished()) placeIteration(astar.iterate(), 0);//map = astar.iterate();
-                        //if (!bfs.isFinished()) placeIteration(bfs.iterate(), 1);
-                        if (!bfs.isFinished()) placeIteration(bfs.iterate(),2);
+                        if (!bfs.isFinished()) placeIteration(bfs.iterate(), 1);
                         if (!dfs.isFinished()) placeIteration(dfs.iterate(),3);
-                        if (!astargreedy.isFinished()) placeIteration(astargreedy.iteration(), 1);
+                        if (!astargreedy.isFinished()) placeIteration(astargreedy.iteration(), 2);
                         
-                        if (astar.isFinished() && rs.isFinished() && dfs.isFinished() && astargreedy.isFinished())
+                        
+                        if (astar.isFinished() && bfs.isFinished() && dfs.isFinished() && astargreedy.isFinished())
                         {
-                            mazegenerator = new MazeGenerator2(slotleveys, slotsx, bus);
+                            System.out.println("lollll");
+                            mazegenerator = new MazeGenerator2(slotleveys, slotsx);
                             start = true;
                             try {
-                                Thread.sleep(10000);
+                                Thread.sleep(5000);
                             } catch (InterruptedException ex) {
                                 Logger.getLogger(BufferedStrategyTest.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
+                        
                     }
                     
                     
@@ -219,7 +225,7 @@ public class BufferedStrategyTest extends JFrame implements Runnable, WindowList
                         for (int j = 0; j < slotsy; j++) {
                             if (map[j][i] == 0) 
                             {
-                                g.setColor(Color.WHITE);
+                                g.setColor(Color.LIGHT_GRAY);
                                 g.fillRect(j*pixelsize, i*pixelsize, pixelsize, pixelsize);
                             } else if (map[j][i] == 1)
                             {

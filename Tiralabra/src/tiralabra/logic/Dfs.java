@@ -6,8 +6,8 @@
 package tiralabra.logic;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Stack;
+import tiralabra.logic.structures.HexMap2;
 import tiralabra.logic.structures.NodeMap;
 
 /**
@@ -18,14 +18,14 @@ public class Dfs {
     
     private NodeMap nodemap;
     private Stack<Node> list;
-    private HashMap<Node, Node> from;
+    private HexMap2 from;
     private boolean finished = false;
     
     
     public Dfs(int[][] bytemap)
     {
         this.list = new Stack<>();
-        this.from = new HashMap<>();
+        this.from = new HexMap2(bytemap.length, bytemap[0].length);
         this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
         list.add(nodemap.getStart());
         from.put(nodemap.getStart(), null);

@@ -6,12 +6,12 @@
 package tiralabra.logic;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 import tiralabra.communications.CommunicationBus;
 import tiralabra.logic.structures.NodeMap;
+import tiralabra.logic.structures.NodeQueue2;
 
 /**
  *
@@ -21,23 +21,37 @@ public class MazeGenerator2 {
     
     private NodeMap nodemap;
     private boolean finished;
-    private ArrayList<Node> unprocessed;
-    private ArrayList<Node> stage2;
-    private ArrayList<Node> stage3;
-    private ArrayList<Node> finalStageWhites;
-    ArrayList<ArrayList<Node>> sets;
-    private CommunicationBus bus;
-    private int defaultBuffer = 10000;
     
-    public MazeGenerator2(int x, int y, CommunicationBus bus)
+    private ArrayList<Node> unprocessed;
+    //private NodeQueue2 unprocessed;
+    
+    
+    private ArrayList<Node> stage2;
+    //private NodeQueue2 stage2;
+    
+    private ArrayList<Node> stage3;
+    //private NodeQueue2 stage3;
+    
+    private ArrayList<Node> finalStageWhites;
+    //private NodeQueue2 finalStageWhites;
+    
+    ArrayList<ArrayList<Node>> sets;
+    //private CommunicationBus bus;
+    private int defaultBuffer = 2000;
+    
+    public MazeGenerator2(int x, int y) //, CommunicationBus bus)
     {
-        this.bus = bus;
+        //this.bus = bus;
         this.nodemap = new NodeMap(x,y);
         finished = false;
         unprocessed = new ArrayList<>();
+        //unprocessed = new NodeQueue2();
         stage2 = new ArrayList<>();
+        //stage2 = new NodeQueue2();
         stage3 = new ArrayList<>();
+        //stage3 = new NodeQueue2();
         finalStageWhites = new ArrayList<>();
+        //finalStageWhites = new NodeQueue2();
         sets = new ArrayList<>();
         
         nodemap.getAllNodes().forEach(n -> 
@@ -92,8 +106,8 @@ public class MazeGenerator2 {
         else if (s5)
         {
             //nodemap.greenToWhite();
-            nodemap.swapColors(0, 1);
-            s5 = false;
+            if(!swapColors(0,1)) s5 = false;
+            
         }
         
         
@@ -111,6 +125,42 @@ public class MazeGenerator2 {
         */
         
         return nodemap.getIntMap();
+    }
+    
+    private ArrayList<Node> unswapped;
+    
+    private boolean swapColors(int colora, int colorb)
+    {
+        for (int i = 0; i < defaultBuffer; i++) {
+            
+        
+        //System.out.println("called");
+        if (unswapped == null)
+        {
+            unswapped = new ArrayList<>();
+            for (Node n : nodemap.getAllNodes())
+                unswapped.add(n);
+        }
+        
+        if (unswapped.isEmpty()) return false;
+        
+        int random = new Random().nextInt(unswapped.size());
+        Node randomNode = unswapped.get(random);
+        unswapped.remove(random);
+        
+        if (randomNode.color == colora) 
+        {
+            nodemap.changeColor(randomNode, colorb);
+            //System.out.println("swapped:"+colora+" to:"+colorb);
+        }
+        else if (randomNode.color == colorb)
+        {
+            nodemap.changeColor(randomNode, colora);
+            //System.out.println("swapped:"+colorb+" to:"+colora);
+        }
+        
+        }
+        return true;
     }
     
     private void connectSets()
@@ -245,7 +295,12 @@ public class MazeGenerator2 {
         while(!stage3.isEmpty())
         {
             //long whiteCount = nodemap.getNeighbours(stage3.get(0)).stream().filter(n -> n.color == 0).count();
-            long blackCount = nodemap.getNeighbours(stage3.get(0)).stream().filter(n -> n.color == 1).count();
+            //long blackCount = nodemap.getNeighbours(stage3.get(0)).stream().filter(n -> n.color == 1).count();
+            int blackCount = 0;
+            for (Node n : nodemap.getNeighbours(stage3.get(0))) 
+            {
+                if (n != null && n.color == 1) blackCount++;
+            }
             
             if (blackCount >= 6) 
             {

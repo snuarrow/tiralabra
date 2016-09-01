@@ -76,6 +76,12 @@ public class Node {
         return Math.sqrt((xDist*xDist) + (yDist*yDist));
     }
     
+   
+    public int code()
+    {
+        return 10000*x+10*y+color;
+    }
+    
     @Override
     public String toString()
     {

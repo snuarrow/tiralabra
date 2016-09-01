@@ -5,10 +5,10 @@
  */
 package tiralabra.logic;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Queue;
+import tiralabra.logic.structures.HexMap2;
 import tiralabra.logic.structures.NodeMap;
+import tiralabra.logic.structures.NodeQueue2;
 
 /**
  *
@@ -17,14 +17,17 @@ import tiralabra.logic.structures.NodeMap;
 public class Bfs {
     
     private NodeMap nodemap;
-    private Queue<Node> list;
-    private HashMap<Node, Node> from;
+    private NodeQueue2 list;
+    private HexMap2 from;
     private boolean finished = false;
     
     public Bfs(int[][] bytemap)
     {
-        this.list = new LinkedList<>();
-        this.from = new HashMap<>();
+        int xsize = bytemap.length;
+        int ysize = bytemap[0].length;
+        this.list = new NodeQueue2();
+        
+        this.from = new HexMap2(xsize, ysize);
         this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
         list.add(nodemap.getStart());
         from.put(nodemap.getStart(), null);
@@ -48,8 +51,8 @@ public class Bfs {
                     if (n.color == 3)
                     {
                         from.put(n, current);
-                        finished = true;
                         drawRoute(n);
+                        //finished = true;
                         break;
                     }
                     if (n.color == 0) 
@@ -73,7 +76,7 @@ public class Bfs {
             Node f = from.get(current);
             nodemap.changeColor(current, 4);
             drawRoute(f);    
-        }
+        } else finished = true;
     }
     
     public boolean isFinished()

@@ -5,7 +5,7 @@
  */
 package tiralabra.logic;
 
-import java.util.HashMap;
+import tiralabra.logic.structures.HexMap2;
 import tiralabra.logic.structures.NodeMap;
 import tiralabra.logic.structures.NodeQueue2;
 
@@ -17,12 +17,12 @@ public class AstarGreedy {
     
     private NodeMap nodemap;
     private NodeQueue2 queue;
-    private HashMap<Node, Node> from;
+    private HexMap2 from;
     private boolean finished = false;
     
     public AstarGreedy(int[][] bytemap)
     {
-        this.from = new HashMap<>();
+        this.from = new HexMap2(bytemap.length,bytemap[0].length);
         this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
         this.queue = new NodeQueue2();
         //queue.addPriority(nodemap.getStart(), nodemap.getGoal());

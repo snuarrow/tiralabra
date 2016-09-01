@@ -96,6 +96,8 @@ public class NodeMap {
         return nodemap[x][y];
     }
     
+    
+    
     public void swapColors(int a, int b)
     {
         for (Node[] nodemap1 : nodemap) {
@@ -105,7 +107,6 @@ public class NodeMap {
             }
         }
     }
-    
     
     public void greenToWhite()
     {
@@ -150,6 +151,7 @@ public class NodeMap {
     }
     
     //tested
+    
     public ArrayList<Node> getCornerNeighbours(Node n)
     {
         ArrayList<Node> r = new ArrayList<>();

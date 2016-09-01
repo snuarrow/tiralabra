@@ -17,9 +17,9 @@ import tiralabra.logic.Node;
  *
  * @author hexvaara
  */
-public class HexMapTest {
+public class HexMap2Test {
     
-    public HexMapTest() {
+    public HexMap2Test() {
     }
     
     @BeforeClass
@@ -38,11 +38,18 @@ public class HexMapTest {
     public void tearDown() {
     }
 
+    @Test public void testTemp()
+    {
+        
+    }
+       
+    
+    /*
     @Test
     public void testPutContainsGetNodeNode() {
         Node key = new Node(0,0);
         Object value = new Node(1,1);
-        HexMap instance = new HexMap();
+        HexMap2 instance = new HexMap2();
         instance.put(key, value);
         
         assertTrue(instance.containsKey(key));
@@ -75,4 +82,5 @@ public class HexMapTest {
         assertTrue(instance.containsKey(key2));
         assertEquals((Double)instance.get(key2), 1.2, 0.001);
     }
+    */
 }

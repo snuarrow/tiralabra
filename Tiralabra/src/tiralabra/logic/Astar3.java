@@ -7,7 +7,8 @@ package tiralabra.logic;
 
 import java.util.HashMap;
 import tiralabra.logic.structures.NodeMap;
-import tiralabra.logic.structures.HexMap;
+import tiralabra.logic.structures.HexMap2;
+import tiralabra.logic.structures.HexMap3;
 import tiralabra.logic.structures.HexSet;
 import tiralabra.logic.structures.NodeQueue2;
 
@@ -24,15 +25,18 @@ public class Astar3 {
     //HashSet<Node> openSet;
     HexSet closedSet;
     NodeQueue2 openSet;
-    HashMap<Node, Node> cameFrom;
-    //HexMap cameFrom;
-    HashMap<Node, Double> gScore;
-    //HexMap gScore;
-    HashMap<Node, Double> fScore;
-    //HexMap fScore;
+    //HashMap<Node, Node> cameFrom;
+    HexMap2 cameFrom;
+    //HashMap<Node, Double> gScore;
+    HexMap3 gScore;
+    //HashMap<Node, Double> fScore;
+    HexMap3 fScore;
     
     public Astar3(int[][] bytemap)
     {
+        int xsize = bytemap.length;
+        int ysize = bytemap[0].length;
+        
         this.nodemap = new NodeMap(bytemap.length,bytemap[0].length, bytemap);
         //this.closedSet = new HashSet<>();
         //this.openSet = new HashSet<>();
@@ -40,13 +44,13 @@ public class Astar3 {
         this.openSet = new NodeQueue2();
         this.openSet.add(nodemap.getStart());
         
-        this.cameFrom = new HashMap<>();
-        //this.cameFrom = new HexMap();
-        this.gScore = new HashMap<>();
-        //this.gScore = new HexMap();
+        //this.cameFrom = new HashMap<>();
+        this.cameFrom = new HexMap2(xsize, ysize);
+        //this.gScore = new HashMap<>();
+        this.gScore = new HexMap3(xsize, ysize);
         this.gScore.put(nodemap.getStart(), 0.0);
-        this.fScore = new HashMap<>();
-        //this.fScore = new HexMap();
+        //this.fScore = new HashMap<>();
+        this.fScore = new HexMap3(xsize, ysize);
         this.fScore.put(nodemap.getStart(), heuristic_cost_estimate(nodemap.getStart(),nodemap.getGoal()));
     }
     
@@ -107,7 +111,7 @@ public class Astar3 {
     
     private Node lowestFScoreInOpenSet()
     {
-        /*
+        
         Node best = null;
         double bestFScore = Integer.MAX_VALUE;
         for (Node nodeInOpenSet : openSet.getContent()) {
@@ -124,9 +128,9 @@ public class Astar3 {
             
         }
         return best;
-        */
         
-        return openSet.lowestFscoreInOpenSet(fScore);
+        
+        //return openSet.lowestFscoreInOpenSet(fScore);
     }
     
     private double heuristic_cost_estimate(Node from, Node to)

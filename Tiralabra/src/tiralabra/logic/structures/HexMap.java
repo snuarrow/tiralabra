@@ -17,13 +17,14 @@ public class HexMap {
     
     Tuple[] memory;
     
+    Node[][] nodes;
+    
     public HexMap()
     {
         
     }
     
-    
-    public void put(Node key, Object value)
+    public void put(Node key, Node value)
     {
         if (containsKey(key))
         {

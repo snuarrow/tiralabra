@@ -20,10 +20,11 @@ public class NodeQueue2 {
     private int addCount;
     //private int addedCount;
     private int nullCount;
+    private int startNulls;
     
     public NodeQueue2()
     {
-        
+        startNulls = 0;
         addCount = 0;
         nullCount = 0;
         
@@ -31,9 +32,43 @@ public class NodeQueue2 {
         for (Node m : memory) {
             m = null;
         }
-                
     }
     
+    public Node get(int index)
+    {
+        
+        int counter = 0;
+        for (int i = startNulls; i < addCount; i++) {
+            if (memory[i] != null)
+            {
+                //System.out.println("i were here");
+                if (index == counter) 
+                {    
+                    return memory[i];
+                }
+                counter++;
+            }
+        }
+        
+        //System.out.println("startnulls:"+startNulls+"nullcount:"+nullCount+"addcount:"+addCount+" index: "+index+" size:"+size());
+        //System.out.println("i returned null");
+        
+        return null;
+    }
+    
+    public Node poll()
+    {
+        for (int i = startNulls; i < addCount; i++) {
+            if (memory[i] != null)
+            {
+                Node r = memory[i];
+                removeIndex(i);
+                startNulls++;
+                return r;
+            }
+        }
+        return null;
+    }
     
     // needed for astar
     public Node[] getContent()
@@ -55,18 +90,36 @@ public class NodeQueue2 {
     // needed for astar
     public void add(Node input)
     {
+        //System.out.println("add called");
         if (addCount == memory.length) reallocMemory();
         memory[addCount] = input;
         addCount += 1;
     }
     
     //needed for astar
+    
+    public void remove(int index)
+    {
+        int ii = 0;
+        for (int i = startNulls; i < addCount; i++) {
+            if (memory[i] != null)
+            {
+                if (ii == index)
+                {
+                    removeIndex(i);
+                    return;
+                }
+                ii++;
+            }
+        }
+    }
+    
     public boolean remove(Node input)
     {
         for (int i = 0; i < memory.length; i++) {
             if (memory[i] != null && memory[i].equals(input)) 
             {
-                nullCount += 1;
+                
                 removeIndex(i);
                 return true;
             }
@@ -88,7 +141,8 @@ public class NodeQueue2 {
     //needed for astar
     public boolean isEmpty()
     {
-        return addCount-nullCount == 0;
+        if (this.memory == null) return true;
+        return size() == 0;
     }
     
     public int length()
@@ -97,15 +151,22 @@ public class NodeQueue2 {
         return addCount-nullCount;
     }
     
+    public int size()
+    {
+        return length();
+    }
+    
 
     
     private void removeIndex(int index)
     {
         memory[index] = null;
+        nullCount += 1;
     }
     
     private void reallocMemory()
     {
+        //System.out.println("realloc: addcount:"+addCount+" nullcount:"+nullCount+" memory.length:"+memory.length);
         bestIndex = -1;
         Node[] temp = new Node[(addCount-nullCount)*2];
         int tempindex = 0;
@@ -115,10 +176,8 @@ public class NodeQueue2 {
             temp[tempindex++] = memory[i];
             
             addCount = tempindex;
-            
-            
-            
         }
+        startNulls = 0;
         nullCount = 0;
         memory = temp;
     }

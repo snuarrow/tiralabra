@@ -5,6 +5,8 @@
  */
 package tiralabra.logic.structures;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -268,4 +270,111 @@ public class NodeQueue2Test {
         Assert.assertArrayEquals(n0.getContent(), n1.getContent());
         
     }
+    
+    @Test
+    public void bigScaleTest()
+    {
+        ArrayList<Node> container = new ArrayList<>();
+        
+        for (int i = 0; i < 8000; i++) {
+            Node n = new Node(i,1,0);
+            q2.add(n);
+            container.add(n);
+        }
+        
+        for (Node container1 : container) {
+            assertTrue(q2.contains(container1));
+        }
+        
+        
+        for (int i = 0; i < 8000; i++) {
+            assertEquals(q2.get(i), container.get(i));
+        }
+        
+        
+        
+        for (Node n : q2.getContent())
+        {
+            if (container.contains(n)) container.remove(n);
+        }
+        
+        assertEquals(0, container.size());
+    }
+    
+    @Test
+    public void testGetRemoveAdd()
+    {
+        ArrayList<Node> container = new ArrayList<>();
+        
+        for (int i = 0; i < 8000; i++) {
+            Node n = new Node(i,1,0);
+            q2.add(n);
+            container.add(n);
+        }
+        
+        
+        for (int i = 0; i < 8000; i++) {
+            assertEquals(q2.get(i), container.get(i));
+        }
+        
+        
+        
+        
+        
+        HashSet<Node> removed = new HashSet<>();
+        for (int i = 0; i < q2.size(); i += 100) {
+            removed.add(q2.get(i));
+            q2.remove(i);
+        }
+        
+        for (int i = 0; i < q2.size(); i++) {
+            assertFalse(removed.contains(q2.get(i)));
+        }
+        
+        for (int i = 0; i < q2.size(); i++) {
+            container.remove(q2.get(i));
+        }
+        
+        assertEquals(container.size(), removed.size());
+    }
+    
+    @Test
+    public void testGetNode()
+    {
+        ArrayList<Node> container = new ArrayList<>();
+        
+        for (int i = 0; i < 8000; i++) {
+            Node n = new Node(i,1,0);
+            q2.add(n);
+            container.add(n);
+        }
+        
+        for (Node container1 : container) {
+            q2.remove(container1);
+        }
+        
+        assertEquals(q2.size(), 0);
+    }
+    
+    @Test
+    public void testGetNeighbours()
+    {
+        ArrayList<Node> container = new ArrayList<>();
+        
+        for (int i = 0; i < 8000; i++) {
+            Node n = new Node(i,1,0);
+            q2.add(n);
+            container.add(n);
+        }
+        
+        int count = 0;
+        while (!q2.isEmpty()) 
+        {
+            System.out.println(count++);
+            //assertNotNull(q2.get(0));
+            q2.remove(0);
+        }
+    }
+    
+    
 }

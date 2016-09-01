@@ -6,8 +6,7 @@
 package tiralabra;
 
 import java.lang.reflect.InvocationTargetException;
-import tiralabra.logic.Astar3;
-import tiralabra.logic.Node;
+import tiralabra.gui.MainFrame2;
 
 /**
  * Main class
@@ -25,8 +24,52 @@ public class Tiralabra {
         //ProgramStarter ps = new ProgramStarter();
         //ps.startFrame();
     
+        /*
+        int[] testi = new int[30139904];
+        int index = 0;
+        
+        int highestHashCode = Integer.MIN_VALUE;
+        int lowestHashCode = Integer.MAX_VALUE;
+        
+        HashSet<Integer> codes = new HashSet<>();
+        HashSet<Node> nodes = new HashSet<>();
+        
+        for (int i = 0; i < 3000; i++) {
+            for (int j = 0; j < 1500; j++) {
+                for (int k = 0; k < 5; k++) {
+                    Node n = new Node(i,j,k);
+                    //System.out.println(n.code());
+                    //if (codes.contains(n.code())) System.out.println("FAIL");
+                    //else codes.add(n.code());
+                    
+                    if (nodes.contains(n)) System.out.println("FAIL");
+                    else nodes.add(n);
+                    
+                    if (n.code() > highestHashCode) highestHashCode = n.code();
+                    if (n.code() < lowestHashCode) lowestHashCode = n.code();
+                }
+            }
+            System.out.println(i);
+        }
+        
+        System.out.println(highestHashCode);
+        System.out.println(lowestHashCode);
+        */
+        
+        /*
+        ArrayList<Integer> asd = new ArrayList<>();
+        
+        for (int i = 0; i < 10; i++) {
+            asd.add(i);
+        }
+        
+        
+        asd.stream().filter(i -> i > 2).forEach(i -> System.out.println(i));
+        */
+        
         new BufferedStrategyTest();
-       
+        //new MainFrame2(6);
+        
     }
     
     public static void printByteMap(byte[][] bytemap)

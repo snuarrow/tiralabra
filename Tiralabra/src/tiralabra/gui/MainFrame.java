@@ -52,7 +52,7 @@ public class MainFrame extends JPanel implements ActionListener, MouseListener, 
         
         bus = new CommunicationBus();
         
-        this.mazegenerator = new MazeGenerator2(slotsX,slotsY, bus );
+        this.mazegenerator = new MazeGenerator2(slotsX,slotsY);
         //this.mazegenerator.start();
         this.bytemap = mazegenerator.getStartFrame();
         //this.gol = new GameOfLife(slotsX,slotsY,bytemap);
