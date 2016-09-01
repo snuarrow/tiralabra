@@ -67,7 +67,8 @@ public class Tiralabra {
         asd.stream().filter(i -> i > 2).forEach(i -> System.out.println(i));
         */
         
-        new BufferedStrategyTest();
+        //new BufferedStrategyTest();
+        new MainFrame3();
         //new MainFrame2(6);
         
     }
