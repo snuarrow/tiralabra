@@ -1,4 +1,4 @@
-package tiralabra.logic;
+package tiralabra.logic.structures;
 
 /**
  * Node for 2 dimensional map.

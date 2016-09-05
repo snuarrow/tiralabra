@@ -6,7 +6,6 @@
 package tiralabra.logic.structures;
 
 import java.util.ArrayList;
-import tiralabra.logic.Node;
 
 /**
  *

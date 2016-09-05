@@ -6,7 +6,6 @@
 package tiralabra.logic.structures;
 
 import java.util.ArrayList;
-import tiralabra.logic.Node;
 
 /**
  * n*m sized array for handling nodes in graph.

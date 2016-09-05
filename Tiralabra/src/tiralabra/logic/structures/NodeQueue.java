@@ -5,8 +5,6 @@
  */
 package tiralabra.logic.structures;
 
-import tiralabra.logic.Node;
-
 /**
  *
  * @author hexvaara

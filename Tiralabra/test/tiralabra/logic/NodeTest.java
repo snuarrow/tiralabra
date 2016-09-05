@@ -5,6 +5,7 @@
  */
 package tiralabra.logic;
 
+import tiralabra.logic.structures.Node;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

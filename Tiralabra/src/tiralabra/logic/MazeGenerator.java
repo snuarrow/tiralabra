@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
+import tiralabra.logic.structures.Node;
 import tiralabra.logic.structures.NodeMap;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Random;
-import tiralabra.logic.structures.MazeSet;
 
 /**
  * Maze Generator.
- * not fully implemented yet
- * 
+ * Generates traditional maze with multiple possible routes. not in use.
+ * Is not implemented with own data structures, because not in use.
  * @author hexvaara
  */
 public class MazeGenerator {
@@ -118,12 +110,9 @@ public class MazeGenerator {
     
     private void joinSets()
     {
-        System.out.println("i was called");
         //for (int i = 0; i < sets.size(); i++) {
             
         int i = smallestSetIndex();
-        
-        System.out.println(i + "  size: "+sets.get(i).get(0));
         
             ArrayList<Node> allNeighbours = getNeighboursOfSet(sets.get(i));
             ArrayList<Node> filtered = new ArrayList<>();
@@ -135,7 +124,6 @@ public class MazeGenerator {
                 if (nset == -1 && nodemap.getColor(n) == 0)
                 {
                     sets.get(i).add(n);
-                    System.out.println("im");
                     return;
                 }
                 
@@ -170,66 +158,8 @@ public class MazeGenerator {
                 }
             }
            
-            
-        System.out.println("went throug");
         if (sets.get(i).size() == 1) nodemap.changeColor(sets.get(i).get(0), 3);
-        //}
-        
-        
-        
-        /*
-        if (blacks == null) 
-        {
-            blacks = nodemap.getAllRemainingBlacks();
-        }
-        
-        Node randomBlack = blacks.get(new Random().nextInt(blacks.size()-1));
-        
-        ArrayList<Integer> neighboringSetIds = new ArrayList<>();
-        
-        for (Node n : nodemap.getCrossNeighbours(randomBlack))
-        {
-           int setid = belongsToSet(n);
-           if (setid != -1 && !neighboringSetIds.contains(setid))
-           {
-               neighboringSetIds.add(setid);
-           }
-        }
-        
-        if (neighboringSetIds.size() == 0) {}
-        if (neighboringSetIds.size() == 1) {
-            // do nothing
-        }
-        if (neighboringSetIds.size() == 2)
-        {
-            joinSets(neighboringSetIds.get(0), neighboringSetIds.get(1));
-            nodemap.changeColor(randomBlack, 0);
-        }
-        if (neighboringSetIds.size() > 2)
-        {
-            for (int i = 1; i < neighboringSetIds.size(); i++) {
-                joinSets(neighboringSetIds.get(0), neighboringSetIds.get(i));
-            }
-        }
-        */
-        
-        
-        
-        /*
-        getNeighboursOfSet(sets.get(smallestSetIndex())).forEach(black -> 
-        {
-            
-        });
-        */
-        
-        // if two of cross neighbours belongs to different sets, join sets and color randomblack white, add randomblack to The set and remove randomblack from blacks, continue
-        
-        
-        
-        
-        
     }
-    
     
     private ArrayList<Node> getNeighboursOfSet(ArrayList<Node> set)
     {
@@ -243,7 +173,6 @@ public class MazeGenerator {
         }
         return neighbours;
     }
-    
     
     private int smallestSetIndex()
     {

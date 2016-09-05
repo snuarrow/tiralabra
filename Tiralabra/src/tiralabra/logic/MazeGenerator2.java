@@ -5,6 +5,7 @@
  */
 package tiralabra.logic;
 
+import tiralabra.logic.structures.Node;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;

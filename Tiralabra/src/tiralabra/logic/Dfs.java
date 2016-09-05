@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
-import java.util.HashMap;
+import tiralabra.logic.structures.Node;
 import java.util.Stack;
 import tiralabra.logic.structures.HexMap2;
 import tiralabra.logic.structures.NodeMap;
 
 /**
- *
+ * Basic Depth first algorithm.
+ * not really good in cyclic graph as in this demo.
  * @author hexvaara
  */
 public class Dfs {
@@ -20,7 +16,7 @@ public class Dfs {
     private Stack<Node> list;
     private HexMap2 from;
     private boolean finished = false;
-    
+    private int buffersize = 100;
     
     public Dfs(int[][] bytemap)
     {
@@ -31,20 +27,21 @@ public class Dfs {
         from.put(nodemap.getStart(), null);
     }
     
+    /**
+     * iterates "buffer size" amount of iterations.
+     * because algorithm is much faster than graphics pipeline.
+     * 
+     * @return 
+     */
     public int[][] iterate()
     {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < buffersize; i++) {
             
         
         if (!list.isEmpty() && !finished)
         {
             Node current = list.pop();
-            //nodemap.changeColor(current, 2);
-        
-            
-             
-            
-                for (Node n : nodemap.getCrossNeighbours(current))
+            for (Node n : nodemap.getCrossNeighbours(current))
                 {
                     if (n.color == 3)
                     {
@@ -61,8 +58,7 @@ public class Dfs {
                         //list.add(n);
                     }
                 }
-            
-        }
+            }
         }
         return nodemap.getIntMap();
     }
@@ -71,7 +67,6 @@ public class Dfs {
     {
         if (current != null)
         {
-            //System.out.println(current);
             Node f = from.get(current);
             nodemap.changeColor(current, 4);
             drawRoute(f);    
