@@ -58,4 +58,6 @@ ohjelmaa on testattu "development driven testing" menetelmällä, eli koodattu n
 käyttöohje
 ----------
 
-./tiralabra.java <-- run and enjoy
+1. download repository (using git clone or dowload zip)
+2. run .jar file by typing: "java -jar Tiralabra.jar"
+3. enjoy graphical presentation.
