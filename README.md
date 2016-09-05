@@ -49,7 +49,7 @@ lopullinen palautus
 
 ![alt tag](finaldemo.png)
 
-Ohjelma on nyt valmis. Siitä muodostui animaatiotyylinen demo. Reitinhakualgoritmit käyttävät omia tietorakenteita, mutta esteikön muodostamisessa on tällä hetkellä javan valmiit tietorakenteet, tämä johtuu siitä että omat listani olisi tullut toteuttaa set array hybrideiksi joissa kaikki operaatiot olisivat olleet lähelle O(1), en kuitenkaan nähnyt tätä tarkoituksenmukaiseksi sillä suuri joukko parta-ukkoja on miettinyt tätä ongelmaa vuosikymmeniä.
+Ohjelma on nyt valmis. Siitä muodostui animaatiotyylinen demo. Reitinhakualgoritmit käyttävät omia tietorakenteita, mutta esteikön muodostamisessa on tällä hetkellä javan valmiit tietorakenteet, tämä johtuu siitä että omat listani olisi tullut toteuttaa set array hybrideiksi joissa kaikki operaatiot olisivat olleet lähelle O(1), en kuitenkaan nähnyt tätä tarkoituksenmukaiseksi sillä suuri joukko "parta-ukkoja" on miettinyt tätä ongelmaa vuosikymmeniä. Omilla tietorakenteilla myös esteikön generointi toimii, mutta resoluutiota ei voi nostaa kovinkaan korkeaksi. Omaa listaa olisi voinut virittää, mutta uskoin, että jos käytän ajan tehokkaamman pipelinen toteuttamisen opeteluun logiikan ja graafisen käyttöliittymän välille, käytän hereilläoloaikani järkevämmin. tällä hetkellä grafiikan pipeline ei ole vielä kaikkein järkevin, sillä kommunikaatio logiikan ja gui:n välillä tapahtuu int[][] kartalla, tehokkaampaa olisi lähettää vain muuttuneet pixelit. cpu:lla kuvan renderöinti osoittautui pullonkaulaksi, pitää opetella OpenGl.
 
 testausdokumentti
 -----------------
