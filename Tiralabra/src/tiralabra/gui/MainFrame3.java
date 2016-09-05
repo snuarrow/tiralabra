@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tiralabra;
+package tiralabra.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +24,10 @@ import tiralabra.logic.MazeGenerator2;
 import tiralabra.logic.RandomSearch;
 
 /**
- *
+ * Graphical User Interface.
+ * receives integer maps from program logic and renders them to pixel maps
+ * 
+ * 
  * @author hexvaara
  */
 public class MainFrame3 extends JFrame implements Runnable, WindowListener
@@ -43,28 +46,27 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
     private CommunicationBus bus;
     private int[][] map;
     private int[][] competitorMap;
-    private int pixelsize = 3;
-    private int slotsx = 200;
-    private int slotsy = 400;
-    //private int competitors = 4;
-    private int slotleveys = 100;
+    private int pixelsize = 4;
+    private int slotsx;
+    private int slotsy;
+    private int slotleveys;
     
-    
+    /**
+     * Constructor,
+     * 
+     * gets screen size from system resolution, runs in own thread
+     * 
+     */
     public MainFrame3() 
     {
-        super("Tiralabra");
+        super("Tiralabra Demo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(this);
-        //setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        System.out.println(screenSize.height);
-        System.out.println(screenSize.width);
         
         this.slotsx = ((screenSize.height-20)/pixelsize);//-29;
         this.slotsy = (screenSize.width/pixelsize);//-48;
         this.slotleveys = slotsy/4;
-        
         
         setSize(screenSize.width,screenSize.height);
         setResizable(true);
@@ -95,8 +97,6 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
         strategy = getBufferStrategy();
     }
     
-    
-    
     private boolean generateMaze()
     {
         if (mazegenerator.isFinished()) return false;
@@ -105,11 +105,8 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
         
         competitorMap = temp;
         
-        //System.out.println("slotsx:"+slotsx+" slotleveys:"+slotleveys);
-        
         for (int x = 0; x < slotsx-2; x++) {
             for (int y = 0; y < slotleveys; y++) {
-                //int t = temp[x][y];
                 map[y][x] = temp[y][x];
                 map[y+slotleveys][x] = temp[y][x];
                 map[y+2*slotleveys][x] = temp[y][x];
@@ -119,44 +116,6 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
         return true;
     }
     
-    private boolean grid = false;
-    private void drawGrid()
-    {
-        for (int x = 0; x < slotsx ; x++) {
-            
-            for (int i = 1; i < 4; i++) {
-                map[i*slotleveys-2][x] = 1;
-                map[i*slotleveys-1][x] = 1;
-                map[i*slotleveys][x] = 1;
-                map[i*slotleveys+1][x] = 1;
-            }
-        }
-        
-        for (int i = 0; i < slotsx; i++) {
-            map[0][i] = 1;
-            map[1][i] = 1;
-            map[2][i] = 1;
-            
-            map[slotsy-1][i] = 1;
-            map[slotsy-2][i] = 1;
-            map[slotsy-3][i] = 1;
-        }
-        
-        /*
-        for (int i = 0; i < slotsy; i++) {
-            map[i][0] = 1;
-            map[i][1] = 1;
-            map[i][2] = 1;
-            
-            map[i][slotsx-1] = 1;
-            map[i][slotsx-2] = 1;
-            map[i][slotsx-3] = 1;
-        }
-                */
-        
-        grid = true;
-    }
-    
     private void placeIteration(int[][] algo, int slot)
     {
         for (int i = 0; i < slotsx; i++) {
@@ -164,7 +123,6 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
                 map[j+slot*slotleveys][i] = algo[j][i];
             }
         }
-        //drawGrid();
     }
 
     private boolean start = true;
@@ -217,7 +175,6 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
     public void runIterations()
     {
         if (generateMaze());
-        //else if (!grid) drawGrid();
         else if (start)
         {
             try {
@@ -227,8 +184,6 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
             }
             start = false;
             
-            //while (competitorMap[slotleveys/2][startpointheight++] == 0) 
-            //{
             drawBorders(competitorMap);
             
             if (setStartPoint(competitorMap));
@@ -240,8 +195,6 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
             
             drawpoints = true;
             
-            //}
-            //System.out.println("startpoint: "+slotleveys/2+" , "+startpointheight);
             competitorMap[slotleveys/2][slotsx-1] = 3;
             astar = new Astar3(competitorMap);
             bfs = new Bfs(competitorMap);
@@ -254,15 +207,13 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
         {
             if (astar.isFinished() && bfs.isFinished() && dfs.isFinished() && astargreedy.isFinished())
             {
-                System.out.println("lollll");
-                
                 mid = false;
                 end = true;
                 drawpoints = false;
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(BufferedStrategyTest.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MainFrame3.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (!astar.isFinished()) placeIteration(astar.iterate(), 0);//map = astar.iterate();
@@ -272,31 +223,28 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
         }
         else if (end)
         {
-            System.out.println("here?");
             if (endAnimator == null) endAnimator = new EndAnimator(map);
             
             if (endAnimator.isFinished())
             {
-                System.out.println("end is finished");
                 end = false;
                 start = true;
                 mazegenerator = new MazeGenerator2(slotleveys, slotsx);
                 endAnimator = null;
             } else
             {
-                System.out.println("called");
                 map = endAnimator.iterate();
             }
         }
     }
     
-    
+    /**
+     * render loop, where everything is triggered
+     */
     @Override
     public void run() {
         
-        int a = 0;
-        int b = 0;
-          // Main loop
+        // Main loop
         while (running) {
             // Prepare for rendering the next frame
             // ...
@@ -310,12 +258,7 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
                     // to make sure the strategy is validated
                     Graphics g = strategy.getDrawGraphics();
 
-                    //if (!mazegenerator.isFinished()) map = mazegenerator.iterate();
-                    
-                    
                     runIterations();
-                    
-                    
                     
                     render(g);
                     
@@ -333,16 +276,7 @@ public class MainFrame3 extends JFrame implements Runnable, WindowListener
                         g.fillOval((((slotleveys*pixelsize)/2)-20)+slotleveys*pixelsize*2, slotsx*pixelsize-30, 40, 40);
                         g.fillOval((((slotleveys*pixelsize)/2)-20)+slotleveys*pixelsize*3, slotsx*pixelsize-30, 40, 40);
                     }
-                    
-                    //.fillRect(bus.x(), bus.y(), 10, 10);
-                    //g.setColor(Color.GRAY);
-                    //g.drawRect(0, 0, 500, 500);
                     g.setColor(Color.BLACK);
-                    //g.drawLine(a++, b++, 200, 50);
-
-                    //if (a > 500) a = 0;
-                    //if (b > 500) b = 0;
-                    
                     // Dispose the graphics
                     g.dispose();
 

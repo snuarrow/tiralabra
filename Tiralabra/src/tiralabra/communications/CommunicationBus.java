@@ -9,7 +9,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- *
+ * Communication bus between concurrent logic and GUI threads.
+ * sorry, not in use.
+ * 
  * @author hexvaara
  */
 public class CommunicationBus {
@@ -28,10 +30,8 @@ public class CommunicationBus {
         this.x.put(x);
         this.y.put(y);
         this.c.put(c);
-        //System.out.println("was set");
         
-        //doNotify();
-        System.out.println("donotify");
+        doNotify();
     }
     
     public int x() throws InterruptedException
@@ -49,7 +49,6 @@ public class CommunicationBus {
         return (int) c.take();
     }
     
-    /*
     public void doWait()
     {
         synchronized(this)
@@ -60,7 +59,6 @@ public class CommunicationBus {
             } catch (InterruptedException e) {}
         }
     }
-    */
     
     public void doNotify()
     {
