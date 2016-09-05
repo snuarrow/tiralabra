@@ -40,3 +40,23 @@ viikkoraportti 5
 
 mazegenerator toimii nyt alustavasti ja astar ratkoo sen nätisti.
 ![alt tag](mazev1.png)
+
+viikkoraportti 6
+----------------
+
+demotilaisuus meni onnistuneesti, pieni demoefekti oli havaittavissa.
+
+lopullinen palautus
+-------------------
+
+![alt tag](finaldemo.png)
+
+Ohjelma on nyt valmis
+
+testausdokumentti
+-----------------
+
+käyttöohje
+----------
+
+./tiralabra.java <-- run and enjoy
