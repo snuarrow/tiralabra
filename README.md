@@ -4,10 +4,8 @@ Reitinhakualgoritmien vertailu
 Tämän ohjelman tarkoituksena on graafisen käyttöliittymän avulla havainnollistaa eri reitinhakualgoritmien tehokkuutta. Harjoitustyössä joudun implementoimaan ainakin seuraavia tietorakenteita ja algoritmeja
 
 0. A*
-0. Dijkstra
 0. BFS & DFS
 0. Arraylist, Linkedlist, Queues
-0. Some sorting algorithms for priority queues
 
 graafisen käyttöliittymän ensimmäinen versio
 --------------------------------------------
@@ -40,3 +38,24 @@ viikkoraportti 5
 
 mazegenerator toimii nyt alustavasti ja astar ratkoo sen nätisti.
 ![alt tag](mazev1.png)
+
+viikkoraportti 6
+----------------
+
+demotilaisuus meni onnistuneesti, pieni demoefekti oli havaittavissa.
+
+lopullinen palautus
+-------------------
+
+![alt tag](finaldemo.png)
+
+Ohjelma on nyt valmis. Siitä muodostui animaatiotyylinen demo. Reitinhakualgoritmit käyttävät omia tietorakenteita, mutta esteikön muodostamisessa on tällä hetkellä javan valmiit tietorakenteet, tämä johtuu siitä että omat listani olisi tullut toteuttaa set array hybrideiksi joissa kaikki operaatiot olisivat olleet lähelle O(1), en kuitenkaan nähnyt tätä tarkoituksenmukaiseksi sillä suuri joukko "parta-ukkoja" on miettinyt tätä ongelmaa vuosikymmeniä. Omilla tietorakenteilla myös esteikön generointi toimii, mutta resoluutiota ei voi nostaa kovinkaan korkeaksi. Omaa listaa olisi voinut virittää, mutta uskoin, että jos käytän ajan tehokkaamman pipelinen toteuttamisen opeteluun logiikan ja graafisen käyttöliittymän välille, käytän hereilläoloaikani järkevämmin. tällä hetkellä grafiikan pipeline ei ole vielä kaikkein järkevin, sillä kommunikaatio logiikan ja gui:n välillä tapahtuu int[][] kartalla, tehokkaampaa olisi lähettää vain muuttuneet pixelit. cpu:lla kuvan renderöinti osoittautui pullonkaulaksi, pitää opetella OpenGl.
+
+testausdokumentti
+-----------------
+ohjelmaa on testattu "development driven testing" menetelmällä, eli koodattu niin pitkään kunnes bugi on pysäyttänyt, sitten testien avulla on etsitty bugi. olen todennut, että tämän kokoisissa ohjelmistoissa tämä on tehokkain tapa työskennellä. siksi testejä on ehkä verrattaen vähän ja lähinnä vain omat tietorakenteeni on testattu kattavasti. ohjelman yleinen toiminta on todettu manuaalisesti toimivaksi.
+
+käyttöohje
+----------
+
+./tiralabra.java <-- run and enjoy
