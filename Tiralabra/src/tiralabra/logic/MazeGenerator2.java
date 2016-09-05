@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
 import tiralabra.logic.structures.Node;
@@ -10,12 +5,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
-import tiralabra.communications.CommunicationBus;
 import tiralabra.logic.structures.NodeMap;
 import tiralabra.logic.structures.NodeQueue2;
 
 /**
- *
+ * Generates randomly distributed barrier map.
+ * iterations designed for nice graphical output.
+ * 
  * @author hexvaara
  */
 public class MazeGenerator2 {
@@ -26,7 +22,6 @@ public class MazeGenerator2 {
     private ArrayList<Node> unprocessed;
     //private NodeQueue2 unprocessed;
     
-    
     private ArrayList<Node> stage2;
     //private NodeQueue2 stage2;
     
@@ -36,13 +31,14 @@ public class MazeGenerator2 {
     private ArrayList<Node> finalStageWhites;
     //private NodeQueue2 finalStageWhites;
     
-    ArrayList<ArrayList<Node>> sets;
-    //private CommunicationBus bus;
+    private ArrayList<Node> unswapped;
+    
+    private ArrayList<Node> remainingWhites;
+    private ArrayList<ArrayList<Node>> sets;
     private int defaultBuffer = 2000;
     
-    public MazeGenerator2(int x, int y) //, CommunicationBus bus)
+    public MazeGenerator2(int x, int y)
     {
-        //this.bus = bus;
         this.nodemap = new NodeMap(x,y);
         finished = false;
         unprocessed = new ArrayList<>();
@@ -75,95 +71,62 @@ public class MazeGenerator2 {
     private boolean s1 = true;
     private boolean s2 = true;
     private boolean s3 = true;
-    //private boolean s4 = true;
     private boolean s5 = true;
     
     public int[][] iterate()
     {
         if (!s1 && !s2 && !s3 && !s5) finished = true;
         
-        //System.out.println("was called");
         if (s1)
         {
-            //System.out.println("stage1");
             if (!removeRandomBlack()) s1 = false;
         }
         else if (s2)
         {
-            //System.out.println("stage2");
             if (!removeSingleBlacks()) s2 = false;
         }
         else if (s3)
         {
-            //System.out.println("stage3");
             if (!fillSingleWhites()) s3 = false;
         }
-        //else if (s4)
-        //{
-        //    //System.out.println("stage4");
-        //    for (int i = 0; i < 10; i++)
-        //        if (!findSet() && remainingWhites.isEmpty()) s4 = false;
-        //}
         else if (s5)
         {
-            //nodemap.greenToWhite();
             if(!swapColors(0,1)) s5 = false;
             
         }
-        
-        
-        /*
-        if (removeRandomBlack());
-        else if (removeSingleBlacks());
-        else if (fillSingleWhites());
-        else 
-        {
-            for(int i = 0; i < 20; i++) 
-            {
-                if (!findSet() && remainingWhites.isEmpty()) break;
-            }
-        }
-        */
-        
         return nodemap.getIntMap();
     }
-    
-    private ArrayList<Node> unswapped;
     
     private boolean swapColors(int colora, int colorb)
     {
         for (int i = 0; i < defaultBuffer; i++) {
             
+            if (unswapped == null)
+            {
+                unswapped = new ArrayList<>();
+                for (Node n : nodemap.getAllNodes())
+                    unswapped.add(n);
+            }
         
-        //System.out.println("called");
-        if (unswapped == null)
-        {
-            unswapped = new ArrayList<>();
-            for (Node n : nodemap.getAllNodes())
-                unswapped.add(n);
-        }
+            if (unswapped.isEmpty()) return false;
         
-        if (unswapped.isEmpty()) return false;
+            int random = new Random().nextInt(unswapped.size());
+            Node randomNode = unswapped.get(random);
+            unswapped.remove(random);
         
-        int random = new Random().nextInt(unswapped.size());
-        Node randomNode = unswapped.get(random);
-        unswapped.remove(random);
-        
-        if (randomNode.color == colora) 
-        {
-            nodemap.changeColor(randomNode, colorb);
-            //System.out.println("swapped:"+colora+" to:"+colorb);
-        }
-        else if (randomNode.color == colorb)
-        {
-            nodemap.changeColor(randomNode, colora);
-            //System.out.println("swapped:"+colorb+" to:"+colora);
-        }
-        
+            if (randomNode.color == colora) 
+            {
+                nodemap.changeColor(randomNode, colorb);
+            }
+            else if (randomNode.color == colorb)
+            {
+                nodemap.changeColor(randomNode, colora);
+            }
         }
         return true;
     }
     
+    // not used
     private void connectSets()
     {
         while(!sets.isEmpty())
@@ -181,6 +144,7 @@ public class MazeGenerator2 {
         }
     }
     
+    // not used
     private void enlargeSet(int id)
     {
         getNeighboursOfSet(sets.get(id));
@@ -204,28 +168,23 @@ public class MazeGenerator2 {
         int remain = defaultBuffer;
         while(!stage2.isEmpty())
         {
-            //System.out.println("aa");
             Node rn = stage2.get(0);
             
             if (nodemap.getCrossNeighbours(rn).stream().filter(n -> n.color == 0).count() == 4)
             {
                 nodemap.changeColor(rn, 0);
-                //stage2.remove(rn);
-                //break;
             }
             
             stage2.remove(rn);
             
             if (remain-- > 0) continue;
+            
             return true;
-            
-            
         } 
         return false;
     }
     
-    private ArrayList<Node> remainingWhites;
-    
+    // not used
     private boolean findSet()
     {
         if (remainingWhites == null)
@@ -243,11 +202,8 @@ public class MazeGenerator2 {
         ArrayList<Node> set = new ArrayList<>();
         Queue<Node> queue = new LinkedList<>();
         
-       
-        
         for (Node n : remainingWhites)
         {
-            //System.out.println("finding set");
             if (n.color == 0) 
             {
                 queue.add(n);
@@ -256,10 +212,6 @@ public class MazeGenerator2 {
                 break;
             }
         }
-        
-        
-        
-        //queue.add(some);
         
         while (!queue.isEmpty())
         {
@@ -288,15 +240,11 @@ public class MazeGenerator2 {
         
     }
     
-    
-    
     private boolean fillSingleWhites()
     {
         int remain = defaultBuffer;
         while(!stage3.isEmpty())
         {
-            //long whiteCount = nodemap.getNeighbours(stage3.get(0)).stream().filter(n -> n.color == 0).count();
-            //long blackCount = nodemap.getNeighbours(stage3.get(0)).stream().filter(n -> n.color == 1).count();
             int blackCount = 0;
             for (Node n : nodemap.getNeighbours(stage3.get(0))) 
             {
@@ -318,21 +266,6 @@ public class MazeGenerator2 {
         return false;
     }
     
-    /*
-    private boolean removeRandomBlack2() throws InterruptedException
-    {
-        for (int x = 0; x < 900; x++) {
-            for (int y = 0; y < 1600; y++) {
-                bus.setNewPixel(x, y, 1);
-                //bus.doNotify();
-            }
-        }
-        return true;
-    }
-    */
-    
-    
-    
     private boolean removeRandomBlack()
     {
         int remain = defaultBuffer;
@@ -347,25 +280,11 @@ public class MazeGenerator2 {
                 if (n.color == 0) w++;
                 else b++;
             }
-            
-            /*
-            long cornerwhitecount = nodemap.getCornerNeighbours(rn).stream().filter(n -> nodemap.getColor(n) == 0).count();
-            
-            if (cornerwhitecount > 0) 
-            {
-                unprocessed.remove(rn);
-                return false;
-            }
-            */
-                    
             if (b == 4)
             {
                 nodemap.changeColor(rn, 0);
-                //bus.setNewPixel(rn.x, rn.y, 0);
-                //System.out.println("here");
                 unprocessed.remove(rn);
                 stage3.add(rn);
-                //nodemap.getCornerNeighbours(rn).stream().forEach(n -> unprocessed.remove(n));
                 if (remain-- > 0) continue;
                 return true;
             }
@@ -373,7 +292,6 @@ public class MazeGenerator2 {
             if (w == 4)
             {
                 nodemap.changeColor(rn, 0);
-                //bus.setNewPixel(rn.x, rn.y, 0);
                 unprocessed.remove(rn);
                 stage3.add(rn);
                 if (remain-- > 0) continue;
@@ -381,10 +299,8 @@ public class MazeGenerator2 {
             }
             
             unprocessed.remove(rn);
-            //stage3.add(rn);
             stage2.add(rn);
         } 
         return false;
     }
-    
 }

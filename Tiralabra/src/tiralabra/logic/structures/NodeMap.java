@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic.structures;
 
 import java.util.ArrayList;
@@ -21,7 +16,6 @@ public class NodeMap {
     private final int ysize;
     private int xgoal, ygoal, xstart, ystart;
     
-    //tested
     public NodeMap(int xsize, int ysize, int[][] bytemap)
     {
         nodemap = new Node[xsize][ysize];
@@ -30,8 +24,6 @@ public class NodeMap {
         init(bytemap);
     }
     
-    
-    //tested
     public NodeMap(int xsize, int ysize)
     {
         nodemap = new Node[xsize][ysize];
@@ -40,25 +32,21 @@ public class NodeMap {
         initBlack();
     }
     
-    //tested
     public Node getGoal()
     {
         return nodemap[xgoal][ygoal];
     }
     
-    //tested
     public Node getStart()
     {
         return nodemap[xstart][ystart];
     }
     
-    // tested
     public void changeColor(Node n, int color)
     {
         if (nodemap[n.x][n.y].color != 4 && nodemap[n.x][n.y].color != 3) nodemap[n.x][n.y].color = (byte) color;
     }
     
-    //tested
     private void init(int[][] bytemap)
     {
         for (int i = 0; i < xsize; i++) {
@@ -70,7 +58,6 @@ public class NodeMap {
         }
     }
     
-    //tested
     private void initBlack()
     {
         for (int i = 0; i < xsize; i++) {
@@ -89,7 +76,6 @@ public class NodeMap {
         return returnlist;
     }
     
-    //tested
     public Node getNode(int x, int y)
     {
         return nodemap[x][y];
@@ -116,7 +102,6 @@ public class NodeMap {
         }
     }
     
-    //tested
     public ArrayList<Node> getAllNodes()
     {
         ArrayList<Node> returnlist = new ArrayList<>();
@@ -129,7 +114,6 @@ public class NodeMap {
         return returnlist;
     }
     
-    //tested
     public ArrayList<Node> getCrossNeighbours(Node n)
     {
         ArrayList<Node> r = new ArrayList<Node>();
@@ -148,8 +132,6 @@ public class NodeMap {
         
         return r;
     }
-    
-    //tested
     
     public ArrayList<Node> getCornerNeighbours(Node n)
     {
@@ -171,7 +153,6 @@ public class NodeMap {
         return r;
     }
     
-    //tested
     public int getColor(Node n)
     {
         return nodemap[n.x][n.y].color;
@@ -188,7 +169,6 @@ public class NodeMap {
         return r;
     }
     
-    //tested
     public ArrayList<Node> getNeighbours(Node n)
     {
         ArrayList<Node> r = new ArrayList<Node>();

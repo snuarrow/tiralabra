@@ -46,7 +46,6 @@ public class MazeGenerator {
     
     private void putIntoSet(Node n)
     {
-        //System.out.println("i was put into set: "+n);
         if (sets.isEmpty()) 
         {
             amaze[n.x][n.y] = mazeSetId;

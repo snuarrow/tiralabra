@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic;
 
 import tiralabra.logic.structures.Node;
@@ -12,7 +7,10 @@ import java.util.Random;
 import tiralabra.logic.structures.NodeMap;
 
 /**
- *
+ * Breadth first search which picks nodes in random order.
+ * law of big numbers makes this resemble traditional BFS.
+ * not in current demo and thats why does not use own data structures.
+ * 
  * @author hexvaara
  */
 public class RandomSearch {
@@ -21,6 +19,7 @@ public class RandomSearch {
     private NodeMap nodemap;
     private ArrayList<Node> visited;
     private boolean finished = false;
+    private int buffersize = 100;
     
     public RandomSearch(int[][] bytemap)
     {
@@ -30,9 +29,15 @@ public class RandomSearch {
         visited.add(nodemap.getStart());
     }
     
+    /**
+     * iterates "buffer size" amount of iterations.
+     * because algorithm is much faster than graphics pipeline.
+     * 
+     * @return 
+     */
     public int[][] iterate()
     {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < buffersize; i++) {
             
         int randomIndex = new Random().nextInt(visited.size());
         Node current = visited.get(randomIndex);

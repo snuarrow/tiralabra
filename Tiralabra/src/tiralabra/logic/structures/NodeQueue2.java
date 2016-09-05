@@ -3,6 +3,9 @@ package tiralabra.logic.structures;
 import java.util.HashMap;
 
 /**
+ * A bit faster Array like structure.
+ * uses lazy add and remove operations, much are still O(n).
+ * seemed so purposeless to use my lifetime implementing fast list like data structure, ready implementations are so sophisticated.
  *
  * @author hexvaara
  */
@@ -34,7 +37,6 @@ public class NodeQueue2 {
         for (int i = startNulls; i < addCount; i++) {
             if (memory[i] != null)
             {
-                //System.out.println("i were here");
                 if (index == counter) 
                 {    
                     return memory[i];
@@ -42,9 +44,6 @@ public class NodeQueue2 {
                 counter++;
             }
         }
-        
-        //System.out.println("startnulls:"+startNulls+"nullcount:"+nullCount+"addcount:"+addCount+" index: "+index+" size:"+size());
-        //System.out.println("i returned null");
         
         return null;
     }
@@ -63,7 +62,6 @@ public class NodeQueue2 {
         return null;
     }
     
-    // needed for astar
     public Node[] getContent()
     {
         Node[] temp = new Node[addCount-nullCount];
@@ -80,7 +78,6 @@ public class NodeQueue2 {
         return temp;
     }
     
-    // needed for astar
     public void add(Node input)
     {
         //System.out.println("add called");
@@ -88,8 +85,6 @@ public class NodeQueue2 {
         memory[addCount] = input;
         addCount += 1;
     }
-    
-    //needed for astar
     
     public void remove(int index)
     {
@@ -120,7 +115,6 @@ public class NodeQueue2 {
         return false;
     }
     
-    //needed for astar
     public boolean contains(Node input)
     {
         if (input == null) return false;
@@ -131,7 +125,6 @@ public class NodeQueue2 {
         return false;
     }
     
-    //needed for astar
     public boolean isEmpty()
     {
         if (this.memory == null) return true;
@@ -149,8 +142,6 @@ public class NodeQueue2 {
         return length();
     }
     
-
-    
     private void removeIndex(int index)
     {
         memory[index] = null;
@@ -159,7 +150,6 @@ public class NodeQueue2 {
     
     private void reallocMemory()
     {
-        //System.out.println("realloc: addcount:"+addCount+" nullcount:"+nullCount+" memory.length:"+memory.length);
         bestIndex = -1;
         Node[] temp = new Node[(addCount-nullCount)*2];
         int tempindex = 0;
@@ -219,7 +209,6 @@ public class NodeQueue2 {
             bestDistance = currentDistance;
             bestIndex = addCount;
             add(current);
-            //System.out.println("added");
         }
     }
     
@@ -227,7 +216,6 @@ public class NodeQueue2 {
     {
         if (bestIndex != -1)
         {
-            //System.out.println("popif");
             Node r = memory[bestIndex];
             memory[bestIndex] = null;
             bestIndex = -1;
@@ -235,7 +223,6 @@ public class NodeQueue2 {
         }
         else
         {
-            //System.out.println("popelse");
             double bestD = Double.MAX_VALUE;
             int bestI = 0;
             

@@ -1,12 +1,10 @@
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic.structures;
 
 /**
- *
+ * Slow Array like structure.
+ * only used in testing newer NodeQueue2 class.
+ * almost all operations are O(n).
+ * 
  * @author hexvaara
  */
 public class NodeQueue {
@@ -18,14 +16,11 @@ public class NodeQueue {
         
     }
     
-    // needed for astar
     public Node[] getContent()
     {
         return memory;
     }
     
-    
-    //needed for astar
     public boolean remove(Node input)
     {
         for (int i = 0; i < memory.length; i++) {
@@ -38,7 +33,6 @@ public class NodeQueue {
         return false;
     }
     
-    //needed for astar
     public boolean contains(Node input)
     {
         if (memory.length == 0) return false;
@@ -48,7 +42,6 @@ public class NodeQueue {
         return false;
     }
     
-    //needed for astar
     public boolean isEmpty()
     {
         return this.length() == 0;
@@ -87,7 +80,6 @@ public class NodeQueue {
         return memory.length;
     }
     
-    // needed for astar
     public void add(Node input)
     {
         if (this.memory == null) 
@@ -138,8 +130,6 @@ public class NodeQueue {
         }
         ensmall();
     }
-    
-    
     
     @Override
     public String toString()

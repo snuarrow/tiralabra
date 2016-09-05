@@ -1,12 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic.structures;
 
 /**
- *
+ * Map structure for node double combinations.
+ * O(1) timed operations for put, contains and get.
+ * uses screen height * screen width * 64B / pixelSize memory.
+ * 
+ * this is fast.
+ * 
  * @author hexvaara
  */
 public class HexMap3 {
@@ -22,7 +22,6 @@ public class HexMap3 {
             }
         }
     }
-    
     
     public void put(Node key, double value)
     {

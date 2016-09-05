@@ -1,12 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tiralabra.logic.structures;
 
 /**
- *
+ * Set like structure for nodes.
+ * O(1) timed operations for contains and add.
+ * Uses screen height * screen width * sizeOf(boolean) / pixelSize memory.
+ * 
+ * this is fast.
+ * 
  * @author hexvaara
  */
 public class HexSet {
@@ -26,7 +26,6 @@ public class HexSet {
     public boolean contains(Node node)
     {
         return memory[node.x][node.y];
-        
     }
     
     public void add(Node node)
