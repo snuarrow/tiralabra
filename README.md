@@ -51,10 +51,11 @@ lopullinen palautus
 
 ![alt tag](finaldemo.png)
 
-Ohjelma on nyt valmis
+Ohjelma on nyt valmis. Reitinhakualgoritmit käyttävät omia tietorakenteita, mutta esteikön muodostamisessa on tällä hetkellä javan valmiit tietorakenteet, tämä johtuu siitä että omat listani olisi tullut toteuttaa set array hybrideiksi joissa kaikki operaatiot olisivat olleet lähelle O(1), en kuitenkaan nähnyt tätä tarkoituksenmukaiseksi sillä suuri joukko parta-ukkoja on miettinyt tätä ongelmaa vuosikymmeniä.
 
 testausdokumentti
 -----------------
+ohjelmaa on testattu "development driven testing" menetelmällä, eli koodattu niin pitkään kunnes bugi on pysäyttänyt, sitten testien avulla on etsitty bugi. olen todennut, että tämän kokoisissa ohjelmistoissa tämä on tehokkain tapa työskennellä. siksi testejä on ehkä verrattaen vähän ja lähinnä vain omat tietorakenteeni on testattu kattavasti. ohjelman yleinen toiminta on todettu manuaalisesti toimivaksi.
 
 käyttöohje
 ----------
